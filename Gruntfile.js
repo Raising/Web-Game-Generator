@@ -6,60 +6,17 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
 
-    var framework7 = {
-        filename: 'framework7'
-    };
+    let classesList = ["PYC/*.js","PYC/**/*.js","PYC/**/**/*.js"];
+    let modulesList = ["module/*.js"];
 
-    // List of js files to concatenate
-   
-    var jsQualime = ['srcQualyme/js/*.js', 'srcQualyme/js/**/*.js', 'srcQualyme/js/**/**/*.js'];
-
-   
-
-
-    var jsFilesList = [
-        'src/js/wrap-start.js',
-        'src/js/f7-intro.js',
-        'src/js/views.js',
-        'src/js/navbars.js',
-        'src/js/searchbar.js',
-        'src/js/xhr.js',
-        'src/js/pages.js',
-        'src/js/modals.js',
-        'src/js/panels.js',
-        'src/js/messages.js',
-        'src/js/swipeout.js',
-        'src/js/sortable.js',
-        'src/js/smart-select.js',
-        'src/js/pull-to-refresh.js',
-        'src/js/infinite-scroll.js',
-        'src/js/tabs.js',
-        'src/js/fast-clicks.js',
-        'src/js/clicks.js',
-        'src/js/resize.js',
-        'src/js/forms-handler.js',
-        'src/js/push-state.js',
-        'src/js/slider.js',
-        'src/js/photo-browser.js',
-        'src/js/notifications.js',
-        'src/js/plugins.js',
-        'src/js/router.js',
-        'src/js/init.js',
-        'src/js/f7-outro.js',
-        'src/js/dom.js',
-        'src/js/dom-utils.js',
-        'src/js/dom-ajax.js',
-        'src/js/dom-export.js',
-        'src/js/proto-support.js',
-        'src/js/proto-device.js',
-        'src/js/proto-plugins.js',
-        'src/js/wrap-end.js',
-    ];
 
     // Project configuration.
     grunt.initConfig({
-        framework7: framework7,
-        // Metadata.
+                // Metadata.
+        options: {
+          // The separator string (can be colored).
+          
+        },
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*\n' +
             ' * <%= pkg.name %> <%= pkg.version %>\n' +
@@ -93,9 +50,7 @@ module.exports = function (grunt) {
                     paths: ['less'],
                     cleancss: false
                 },
-                files: {
-                    'build/css/framework7.css' : ['src/less/framework7.less']
-                }
+                
             },
             qualyme: {
                 options: {
@@ -114,18 +69,10 @@ module.exports = function (grunt) {
                     cleancss: true
                 },
                 files: {
-                    'dist/css/framework7.min.css' : ['src/less/framework7.less']
+                    'dist/css/in.css' : ['src/less/ess']
                 }
             },
-            kitchen: {
-                options: {
-                    paths: ['kitchen-sink/less/'],
-                    cleancss: false
-                },
-                files: {
-                    'kitchen-sink/css/kitchen-sink.css' : 'kitchen-sink/less/kitchen-sink.less'
-                }
-            },
+          
             examples: {
                 options: {
                     cleancss: false
@@ -196,9 +143,13 @@ module.exports = function (grunt) {
                 }
             },
             classes:{
-                src: ["PYC/*.js","PYC/**/*.js","PYC/**/**/*.js"],
+                src: classesList,
                 dest: "build/js/WGG_Classes.js"
             },
+            all:{
+                src: [...modulesList,...classesList],
+                dest: "build/js/WGG.js"  
+            }
         
         },
         uglify: {
@@ -206,17 +157,18 @@ module.exports = function (grunt) {
                 banner: '<%= banner %>'
             },
             dist: {
-                src: ['dist/js/<%= framework7.filename %>.js'],
-                dest: 'dist/js/<%= framework7.filename %>.min.js',
+                src: ['build/js/WGG'],
+                dest: 'dist/js/WGG.min.js',
             },
         },
         jshint: {
             options: {
+               
                 jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish')
             },
-            gruntfile: {
-                src: [ 'srcQualyme/*.js', 'srcQualyme/js/clases/*.js','srcQualyme/js/clases/**/*.js']
+            classes: {
+                src: classesList,
             }
         },
         
@@ -384,6 +336,7 @@ module.exports = function (grunt) {
     this.registerTask('default', ['build']);
 
     this.registerTask('debugg','prepare build for debugging',[
+        'jshint:classes',
         'concat:classes'
     ]);
 
@@ -398,26 +351,6 @@ module.exports = function (grunt) {
     ]);
 
 
-    this.registerTask('frame7', 'Builds a development version of <%= pkg.name %>', [
-        'concat:js',
-        'less:build',
-        'concat:css_build',
-        'jshint',
-        'copy:build',
-        'jade:build',
-    ]);
-
-    this.registerTask('qualyme', 'Builds a distributable version of <%= pkg.name %>', [
-        'concat:jsQualyme',
-        'concat:portabilidad',
-        'less:qualyme',
-        'jade:build',
-        'jshint',
-        'copy:toAndroid',
-        'copy:toEclipseWorkspace',// 'copy:build',
-        // 'copy:dist',
-        // 'uglify:dist'
-    ]);
 
     // Build a new version of the library
     this.registerTask('build', 'Builds a development version of <%= pkg.name %>', [

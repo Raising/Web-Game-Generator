@@ -1,4 +1,4 @@
-"strict mode";
+"use strict";
 PYC.Describe('Game',{
   attributes:{
     "zones": {},
@@ -57,7 +57,7 @@ PYC.Describe('Game',{
       var me = this;
       me.entitiesId[entity.$Id()] = entity;
       me.entitiesName[entity.name] = entity;
-    }
+    };
 
     me.getEntityByName = function (entityName){
       var me = this;

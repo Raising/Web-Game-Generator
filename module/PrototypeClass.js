@@ -21,11 +21,14 @@ PYC.Describe = function(className,classObject){
 };
 
 PYC.Create = function(className,params = {}){
-  if (PYC.isSettingContextObject(className)){ return PYC.Create.bind(className);}
+  if (PYC.isSettingContextObject(className)){ 
+    return PYC.Create.bind(className);
+  }
 
   let  {targetClassName,dependencyTree} = PYC.proccessDependencyInjection(this,className);
-
-  if (PYC.isStubed(targetClassName)) {return PYC.stubList[targetClassName](params)};
+  if (PYC.isStubed(targetClassName)) {
+    return PYC.stubList[targetClassName](params)
+  };
   
   return PYC.buildObject(targetClassName,params,dependencyTree);
 };
@@ -243,6 +246,29 @@ PYC.isStubed = function(className){
   return PYC.stubList[className] !==  undefined;
 }
 
+
+PYC.runGenerator = function(generator) {
+    var iterator = generator(), currentNode;
+        // asynchronously iterate over generator
+        (function iterate(val){
+            currentNode = iterator.next( val );
+
+            if (!currentNode.done) {
+                // poor man's "is it a promise?" test
+                if ("then" in currentNode.value) {
+                    // wait on the promise
+                    currentNode.value.then( iterate );
+                }
+                // immediate value: just send right back in
+                else {
+                    // avoid synchronous recursion
+                    setTimeout( function(){
+                        iterate( currentNode.value );
+                    }, 0 );
+                }
+            }
+        })();
+    };
 
 /*
 PYC.InjectIdentifiers = function(priv,className){

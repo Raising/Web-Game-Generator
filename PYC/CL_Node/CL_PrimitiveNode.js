@@ -1,3 +1,4 @@
+"use strict";
 PYC.Describe('PrimitiveNode',{
   Extends:'Node',
   attributes:{

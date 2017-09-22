@@ -1,3 +1,4 @@
+"use strict";
 PYC.Describe('FlowNode',{
   Extends:'Node',
   attributes:{

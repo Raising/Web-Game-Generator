@@ -1,4 +1,5 @@
-PYC.Describe('Entity',{
+"use strict";
+PYC.Describe("Entity",{
   attributes:{
     "owner": {},
     "location":{},
@@ -27,14 +28,14 @@ PYC.Describe('Entity',{
   		me.$listenEvent(me,"beforeChange:location","redefineContainedChildren");
   	};
 
-  	me.redefineContainedChildren = async function({newValue = {}}){
+  	me.redefineContainedChildren = function*({newValue = {}}){
   		var me = this;
   		
   		if (me.location.removeChild !== undefined){
-  			await me.location.removeChild({child:me});
+  			yield* me.location.removeChild({child:me});
   		}
   		if (newValue.removeChild !== undefined){
-  			await newValue.addChild({child:me});
+  			yield* newValue.addChild({child:me});
   		}
   		return true;
   	};

@@ -1,3 +1,4 @@
+"use strict";
 PYC.Describe('User',{
   builder: function(obj,params){
     obj.socket  = false;

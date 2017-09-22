@@ -58,7 +58,9 @@
 
 window.onload = function() {
     game = PYC.Create({   dependencyTree:{}, dispatcher:{} })("Game",gameDescription);
-    game.startGame("main");
+    PYC.runGenerator( function *main(){	
+    	yield* game.startGame("main");
+    }
 }
 
 </script>

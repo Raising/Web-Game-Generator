@@ -1,4 +1,5 @@
-PYC.Describe('Node',{
+"use strict";
+PYC.Describe("Node",{
   attributes:{
     "owner": {},
   },
@@ -6,7 +7,6 @@ PYC.Describe('Node',{
     Object.assign(me,params);
   },
   publ: function(me,params){
-
     me.resolveNode = async function(nodeInfo,inputParams){
       var me = this;
       let nodeDescription;
@@ -17,17 +17,8 @@ PYC.Describe('Node',{
         nodeDescription = nodeInfo; 
       } 
       //TODO debe gestionar las estructuras de control en si mismo en caso dqe nodo de flujo
-      // Valorar si juntar l node description y el node info puede generar conflicto
       return PYC.Create(me)(nodeInfo.nodeType + "Node",Object.assign({game:me.game,callerInfo:nodeInfo},nodeDescription)).execute(inputParams);
-
-      // if ( nodeInfo.nodeType === "Flow"){
-      //   let control = nodeInfo.control || {type:"continue",condition:{operands: []}}; 
-      //   return me.controlStructure[control.type].call(me,nodeDescription,params,control.condition);
-      // }else{
-      //   return me["run" + nodeInfo.nodeType](nodeDescription,params);
-      // }
     };
-
 
     me.calculateValue = async function(valueDescriptor,inputParams){
       var me = this;
@@ -65,7 +56,7 @@ PYC.Describe('Node',{
 
     me.resolveOperand = async function(operand,inputParams){
       var me = this;
-      if ( typeof operand === 'object'){
+      if ( typeof operand === "object"){
         if (me.operand[operand.type] === undefined  ){
             console.log(operand,me);
         }
