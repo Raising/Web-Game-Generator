@@ -17,7 +17,7 @@ PYC.Describe("Node",{
         nodeDescription = nodeInfo; 
       } 
       //TODO debe gestionar las estructuras de control en si mismo en caso dqe nodo de flujo
-      return PYC.Create(me)(nodeInfo.nodeType + "Node",Object.assign({game:me.game,callerInfo:nodeInfo},nodeDescription)).execute(inputParams);
+      return await PYC.Create(me)(nodeInfo.nodeType + "Node",Object.assign({game:me.game,callerInfo:nodeInfo},nodeDescription)).execute(inputParams);
     };
 
     me.calculateValue = async function(valueDescriptor,inputParams){
@@ -42,33 +42,33 @@ PYC.Describe("Node",{
 
 
 
-    me.resolveOperation = async function({operator = "",operands = []},inputParams){
+    me.resolveOperation = async function ({operator = "",operands = []},inputParams){
       var me = this;
 
-      return me.operation[operator].call(me,operands,inputParams);
+      return await me.operation[operator].call(me,operands,inputParams);
     };
 
-    me.resolveCondition = async function({operator = "",operands = []},inputParams){
+    me.resolveCondition = async function ({operator = "",operands = []},inputParams){
       var me = this;
 
-      return me.condition[operator].call(me,operands,inputParams);
+      return await me.condition[operator].call(me,operands,inputParams);
     };
 
-    me.resolveOperand = async function(operand,inputParams){
+    me.resolveOperand = async function (operand,inputParams){
       var me = this;
       if ( typeof operand === "object"){
         if (me.operand[operand.type] === undefined  ){
             console.log(operand,me);
         }
 
-        return me.operand[operand.type].call(me,operand,inputParams);
+        return await me.operand[operand.type].call(me,operand,inputParams);
       }else{
         return operand;
       }
     };
 
   	
-    me.addParamsToObjectWithNames = function(params,paramsNames = [], paramsArray){
+    me.addParamsToObjectWithNames = function(params,paramsNames = [], paramsArray = []){
       var me = this;
 
       for (let i = 0; i < paramsNames.length; i++){
@@ -100,27 +100,83 @@ PYC.Describe("Node",{
     };
 
     me.condition = {
-      "==":        async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) ==  await me.resolveOperand(operands[1],inputParams);},
-      "<":         async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) <   await me.resolveOperand(operands[1],inputParams);},
-      "<=":        async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) <=  await me.resolveOperand(operands[1],inputParams);},
-      ">":         async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) >   await me.resolveOperand(operands[1],inputParams);},
-      ">=":        async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) >=  await me.resolveOperand(operands[1],inputParams);},
+      "==":    async function (operands,inputParams) {
+        var me = this; 
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams);
+        return firstOperand == secondOperand; // jshint ignore:line
+      },
+      "<":     async function (operands,inputParams) {
+        var me = this; 
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams);
+        return firstOperand < secondOperand;
+      },
+      "<=":    async function (operands,inputParams) {
+        var me = this; 
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams);
+        return firstOperand <= secondOperand;
+      },
+      ">":     async function (operands,inputParams) {
+        var me = this; 
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams);
+        return firstOperand > secondOperand;
+      },
+      ">=":    async function (operands,inputParams) {
+        var me = this; 
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams);
+        return firstOperand >= secondOperand;
+      },
     };
 
     me.operation = {
-      "+":        async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) +   await me.resolveOperand(operands[1],inputParams);},
-      "-":        async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) -   await me.resolveOperand(operands[1],inputParams);},
-      "/":        async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) /   await me.resolveOperand(operands[1],inputParams);},
-      "*":        async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) *   await me.resolveOperand(operands[1],inputParams);},
-      "pow":      async function (operands,inputParams) {var me = this; return await me.resolveOperand(operands[0],inputParams) **  await me.resolveOperand(operands[1],inputParams);},
+      "+":    async function (operands,inputParams) {
+        var me = this;
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams); 
+        return firstOperand + secondOperand;
+      },
+      "-":    async function (operands,inputParams) {
+        var me = this;
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams); 
+        return firstOperand - secondOperand;
+      },
+      "/":    async function (operands,inputParams) {
+        var me = this;
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams); 
+        return firstOperand / secondOperand;
+      },
+      "*":    async function (operands,inputParams) {
+        var me = this;
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams); 
+        return firstOperand * secondOperand;
+      },
+      "pow":  async function (operands,inputParams) {
+        var me = this;
+        let firstOperand = await me.resolveOperand(operands[0],inputParams);
+        let secondOperand = await me.resolveOperand(operands[1],inputParams); 
+        return Math.pow(firstOperand,secondOperand);
+      },
     };
 
 
    
     me.operand = { 
-      entityProperty: async function({entity = "", attribute = ""}) { var me = this; return me.game.getEntityByName(entity)[attribute]; },
-      entityByName: async function({name = ""}) { var me = this; return me.game.getEntityByName(name); },
-      param: async function({name = "", attribute = ""},params) {
+      entityProperty: async function ({entity = "", attribute = ""}) { 
+        var me = this; 
+        return me.game.getEntityByName(entity)[attribute]; 
+      },
+      entityByName: async function ({name = ""}) {
+       var me = this; 
+       return me.game.getEntityByName(name); 
+      },
+      param: async function ({name = "", attribute = ""},params) {
         var me = this;
         let attributeChain = attribute !== "" ? attribute.split(".") : [];
         var currentValue = params[name];
@@ -134,14 +190,14 @@ PYC.Describe("Node",{
         var me = this;
         let result = [];
         for (var index in list){
-          result.push(await me.resolveOperand(list[index],params));
+          result.push(await me.resolveOperand(list[index],params));  // jshint ignore:line
         }
         return result;
       },
 
       game: async function({attribute = ""},params) {
         var me = this;
-        return me.resolveOperand({type:"param", name : "game", attribute : attribute},{game:me.game});
+        return await me.resolveOperand({type:"param", name : "game", attribute : attribute},{game:me.game});
       },
 
       reduce: async function({group = "", comparator = ""},params){
@@ -158,7 +214,7 @@ PYC.Describe("Node",{
 
     me.selectOne = function (comparator) {
         var me = this;
-        return async (entityA, entityB) => {
+        return async function (entityA, entityB){
           let comparation =  await me.resolveCondition(comparator,{current:entityA,candidate:entityB} ) ; 
           if (comparation){
             return entityA;

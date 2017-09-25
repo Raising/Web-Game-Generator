@@ -22,21 +22,13 @@
     "Document": true,
     "window": true,
     "$":true,
-    "Framework7":true,
     "Event":true,
     "DocumentTouch":true,
-    "APP":true,
     "PYC":true,
-    "$$":true,
     "Promise":true,
-    "PromiseCahin":true,
-    "USER":true,
-    "FB":true,
     "mainView":true,
     "alert":true,
     "SERVERPATH":true,
-    "google":true,
-    "cordova":true,
     "confirm":true
 
   }

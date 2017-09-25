@@ -1,6 +1,6 @@
 "use strict";
-PYC.Describe('PrimitiveNode',{
-  Extends:'Node',
+PYC.Describe("PrimitiveNode",{
+  Extends:"Node",
   attributes:{
   },
   builder: function(me,params){   

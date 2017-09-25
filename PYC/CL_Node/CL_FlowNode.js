@@ -1,6 +1,6 @@
 "use strict";
-PYC.Describe('FlowNode',{
-  Extends:'Node',
+PYC.Describe("FlowNode",{
+  Extends:"Node",
   attributes:{
   },
   builder: function(me,params){   
@@ -10,9 +10,9 @@ PYC.Describe('FlowNode',{
       var me = this;  
       if (me.callerInfo !== undefined && me.callerInfo.control !== undefined){
       	me.control = me.callerInfo.control;
-      	return me.controlStructure[me.control.type].call(me,inputParams);
+      	return await me.controlStructure[me.control.type].call(me,inputParams);
       }else{
-      	return me.singleExecution(inputParams);
+      	return await me.singleExecution(inputParams);
       }
     };
 
@@ -30,16 +30,17 @@ PYC.Describe('FlowNode',{
       }
       console.groupEnd();
 
-      return me.getParamsArrayFromNamedObject(params,me.outputNames);
-    }
+      return await me.getParamsArrayFromNamedObject(params,me.outputNames);
+    };
 
     me.controlStructure = {
       while : async function (  inputParams){
         var me = this;
         params = [];
         let infiniteLoopLock = 0;
-        while (await me.resolveCondition(me.control.condition,inputParams) || infiniteLoopLock > 1000){
-          params.push( await me.singleExecution(inputParams));
+        while (await me.resolveCondition(me.control.condition,inputParams) || infiniteLoopLock > 1000){ // jshint ignore:line
+          let nodeExecution = await me.singleExecution(inputParams);
+          params.push( nodeExecution); 
           infiniteLoopLock++;
         }
         if (infiniteLoopLock > 1000) console.error("infinite loop prevented");
@@ -48,7 +49,7 @@ PYC.Describe('FlowNode',{
 
       simultaneous : async function ( inputParams){
         var me = this;
-        results = [];
+        let result;
         let elements = await me.calculateValue(me.control.nodeSpecificInfo,params); 
         let simultaneousOperations = [];
 
@@ -56,14 +57,13 @@ PYC.Describe('FlowNode',{
         for (var elementIndex in elements){
           simultaneousOperations.push( me.singleExecution([elements[elementIndex],...inputParams]));
         }
-        let result = await Promise.all(simultaneousOperations);      
+        result = await Promise.all(simultaneousOperations);      
         console.groupEnd();  
         return result;
       },
 
       consecutive : async function (inputParams){
       	var me = this;
-        results = [];
         let elements = await me.calculateValue(me.control.nodeSpecificInfo,params); 
         let result = [];
         
@@ -74,7 +74,8 @@ PYC.Describe('FlowNode',{
         console.group("consecutive flows per element");
         
         for (var elementIndex in elements){
-          result.push( await me.singleExecution([elements[elementIndex],...inputParams]));
+          let nodeExecution = await me.singleExecution([elements[elementIndex],...inputParams]);
+          result.push(nodeExecution );
         }
         console.groupEnd();  
         return result;

@@ -1,5 +1,5 @@
 "use strict";
-PYC.Describe('Game',{
+PYC.Describe("Game",{
   attributes:{
     "zones": {},
     "players":{},
@@ -17,7 +17,7 @@ PYC.Describe('Game',{
   publ: function(me){ 
     me.startGame = async function(firstFlowNodeName){
       var me = this;
-      PYC.Create(me)("FlowNode",Object.assign({game:me},me.nodes.Flow[firstFlowNodeName])).execute();
+      await PYC.Create(me)("FlowNode",Object.assign({game:me},me.nodes.Flow[firstFlowNodeName])).execute();
       //return me.runFlow(me.nodes.Flow[firstFlowNodeName]);
     };
 
@@ -47,7 +47,7 @@ PYC.Describe('Game',{
 
     me.createEntity = async function (createNode,inputParams){
       var me = this;
-      let entity = await PYC.Create(me)("Entity",createNode);
+      let entity = await (PYC.Create(me)("Entity",createNode));
       me.addEntity( entity);
       return entity;
     };

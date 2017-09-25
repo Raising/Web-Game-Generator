@@ -28,14 +28,14 @@ PYC.Describe("Entity",{
   		me.$listenEvent(me,"beforeChange:location","redefineContainedChildren");
   	};
 
-  	me.redefineContainedChildren = function*({newValue = {}}){
+  	me.redefineContainedChildren = async function({newValue = {}}){
   		var me = this;
   		
   		if (me.location.removeChild !== undefined){
-  			yield* me.location.removeChild({child:me});
+        await me.location.removeChild({child:me});
   		}
   		if (newValue.removeChild !== undefined){
-  			yield* newValue.addChild({child:me});
+  			await newValue.addChild({child:me});
   		}
   		return true;
   	};
@@ -43,12 +43,12 @@ PYC.Describe("Entity",{
   	me.removeChild = async function({child}){
   		var me = this;
   		var index = me.children.indexOf(child);
-		return me.children.splice(index, 1);
+		  return await me.children.splice(index, 1);
   	};
 
   	me.addChild = async function({child}){
   		var me = this;
-  		return me.children.push(child);
+  		return await  me.children.push(child);
   	};
   	
   	me.select = async function(selectableEntities){
@@ -58,7 +58,7 @@ PYC.Describe("Entity",{
 	  			let selectionIndex = Math.floor((Math.random() * selectableEntities.length));
 	  			console.log("La entidad '" + me.name + "' ha seleccionado: " + selectableEntities[selectionIndex].name);
   				resolve(selectableEntities[selectionIndex]);
-  			}, Math.random() * 1500);
+  			}, Math.random() * 200);
   		}); 
   		
   	};

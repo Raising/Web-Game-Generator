@@ -39,7 +39,7 @@ PYC.Describe('User',{
 
     obj.doSelection = function(selectorType,selectorParams){
       var obj = this;
-      return obj.interactorManager.activateSelector(selectorType,selectorParams);
+      return  obj.interactorManager.activateSelector(selectorType,selectorParams);
       //return {user:"Nacho",password:"1234"};
     };
 

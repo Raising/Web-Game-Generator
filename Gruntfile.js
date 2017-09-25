@@ -146,6 +146,10 @@ module.exports = function (grunt) {
                 src: classesList,
                 dest: "build/js/WGG_Classes.js"
             },
+            descriptorStrife:{
+                src: ["GameDescriptors/gameDescription.js","GameDescriptors/STRIFE/*.js"],
+                dest: "GameDescriptors/STRIFE.js"
+            },
             all:{
                 src: [...modulesList,...classesList],
                 dest: "build/js/WGG.js"  
@@ -337,7 +341,8 @@ module.exports = function (grunt) {
 
     this.registerTask('debugg','prepare build for debugging',[
         'jshint:classes',
-        'concat:classes'
+        'concat:classes',
+        'concat:descriptorStrife'
     ]);
 
     // Build a new version of the library

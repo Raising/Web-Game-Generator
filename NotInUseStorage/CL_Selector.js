@@ -1,3 +1,4 @@
+"use strict";
 PYC.Describe('Selector',{
   builder: function(obj,params){   
     obj.resolve  = null;
@@ -19,7 +20,7 @@ PYC.Describe('Selector',{
     };
     obj.done = function(){
       var obj = this;
-      return obj.end ;
+      return obj.end;
     };
     obj.validate = function(result){
       var obj = this;
@@ -27,7 +28,7 @@ PYC.Describe('Selector',{
     };
     obj.getPromisedResult = function(){
       var obj = this;
-      return new Promise((resolve,reject)=>{
+      return await new Promise((resolve,reject)=>{
         obj.resolve = resolve;
         obj.reject  = reject;
       });

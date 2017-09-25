@@ -56,6 +56,30 @@ PYC.CreateDomNode = function(htmlEnTexto){
   return elemento.childNodes[0];
 };
 
+PYC.runGenerator = function(generator) {
+    var iterator = generator(), currentNode;
+        // asynchronously iterate over generator
+        (function iterate(val){
+            currentNode = iterator.next( val );
+
+            if (!currentNode.done) {
+                // poor man's "is it a promise?" test
+                if (typeof currentNode.value === "Object" && "then" in currentNode.value) {
+                    // wait on the promise
+                    currentNode.value.then( iterate );
+                }
+                // immediate value: just send right back in
+                else {
+                    // avoid synchronous recursion
+                    setTimeout( function(){
+                        iterate( currentNode.value );
+                    }, 0 );
+                }
+            }
+        })();
+    };
+
+
 //------------------------- PRIVATE METHODS--------------------
 
 
@@ -247,28 +271,6 @@ PYC.isStubed = function(className){
 }
 
 
-PYC.runGenerator = function(generator) {
-    var iterator = generator(), currentNode;
-        // asynchronously iterate over generator
-        (function iterate(val){
-            currentNode = iterator.next( val );
-
-            if (!currentNode.done) {
-                // poor man's "is it a promise?" test
-                if ("then" in currentNode.value) {
-                    // wait on the promise
-                    currentNode.value.then( iterate );
-                }
-                // immediate value: just send right back in
-                else {
-                    // avoid synchronous recursion
-                    setTimeout( function(){
-                        iterate( currentNode.value );
-                    }, 0 );
-                }
-            }
-        })();
-    };
 
 /*
 PYC.InjectIdentifiers = function(priv,className){

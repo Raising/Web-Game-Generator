@@ -1,6 +1,6 @@
 "use strict";
-PYC.Describe('SelectorNode',{
-  Extends:'Node',
+PYC.Describe("SelectorNode",{
+  Extends:"Node",
   attributes:{
   },
   builder: function(me,params){   
