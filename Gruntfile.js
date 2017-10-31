@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
 
-    let classesList = ["PYC/*.js","PYC/**/*.js","PYC/**/**/*.js"];
+    let PYCclassesList = ["PYC/*.js","PYC/**/*.js","PYC/**/**/*.js"];
     let modulesList = ["module/*.js"];
 
 
@@ -28,7 +28,9 @@ module.exports = function (grunt) {
 
             ' *\n' +
             ' * Released on: <%= grunt.template.today("mmmm d, yyyy") %>\n' +
-            '*/\n',
+            '*/\n'+
+            "import PYC from '..\\\\..\\\\module\\\\PrototypeClass';\n"+
+            'import React, { Component } from "react";\n',
 
         // Task configuration.
         connect: {
@@ -143,7 +145,8 @@ module.exports = function (grunt) {
                 }
             },
             classes:{
-                src: classesList,
+
+                src: PYCclassesList,
                 dest: "build/js/WGG_Classes.js"
             },
             descriptorStrife:{
@@ -151,7 +154,7 @@ module.exports = function (grunt) {
                 dest: "GameDescriptors/STRIFE.js"
             },
             all:{
-                src: [...modulesList,...classesList],
+                src: [...modulesList,...PYCclassesList],
                 dest: "build/js/WGG.js"  
             }
         
@@ -172,7 +175,7 @@ module.exports = function (grunt) {
                 reporter: require('jshint-stylish')
             },
             classes: {
-                src: classesList,
+                src: PYCclassesList,
             }
         },
         
@@ -340,7 +343,7 @@ module.exports = function (grunt) {
     this.registerTask('default', ['build']);
 
     this.registerTask('debugg','prepare build for debugging',[
-        'jshint:classes',
+        //'jshint:classes',
         'concat:classes',
         'concat:descriptorStrife'
     ]);

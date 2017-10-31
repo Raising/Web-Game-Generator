@@ -6,8 +6,10 @@
  *
  * Copyright 2017, Ignacio Medina Castillo 
  *
- * Released on: September 25, 2017
+ * Released on: October 30, 2017
 */
+import PYC from '..\\..\\module\\PrototypeClass';
+import React, { Component } from "react";
 /*gameDescription.js:0    */ var gameDescription = {
 /*gameDescription.js:1    */     players:[],
 /*gameDescription.js:2    */     nodes:{

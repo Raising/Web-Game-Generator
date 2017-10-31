@@ -1,0 +1,27 @@
+<html>
+    <head>
+    	<title>Web Game Generator</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+    	
+    </body>
+
+</html>
+<script type="text/javascript" src="module/socket.io-1.4.5.js"></script>
+<script type="text/javascript" src="module/EventHandler.js"></script>
+<script type="text/javascript" src="module/PrototypeClass.js"></script>
+
+
+<script type="text/javascript" src="build/js/WGG_Classes.js"></script>
+<script type="text/javascript" src="GameDescriptors/STRIFE.js"></script>
+
+<script>
+
+window.onload = function() {
+
+    game = PYC.Create({   dependencyTree:{}, dispatcher:{} })("Game",gameDescription);
+   	game.startGame("main");
+}
+
+</script>

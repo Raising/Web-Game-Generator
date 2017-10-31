@@ -1,4 +1,4 @@
-var PYC = {Author : 'Ignacio Medina Castillo', mode:'Client',prefix:'CL_'};
+var PYC = {Author : 'Ignacio Medina Castillo', mode:'Client',prefix:''};
 PYC.Server = {};
 PYC.Client = {};
 PYC.classList = {};
@@ -13,9 +13,10 @@ PYC.Describe = function(className,classObject){
   if(!PYC.validateClass(className,classObject)) {return false};
   
   PYC.classList[className] = {
-    public :      PYC.createPublicPrototype(classObject),
+    publ :        PYC.createPublicPrototype(classObject),
     attributes :  PYC.createAttributesPrototype(classObject),
     builder :     PYC.createObjectBuilder(className,classObject),
+    react :       classObject.react,
     DOC :         classObject
   };
 };
@@ -25,7 +26,7 @@ PYC.Create = function(className,params = {}){
     return PYC.Create.bind(className);
   }
 
-  let  {targetClassName,dependencyTree} = PYC.proccessDependencyInjection(this,className);
+  let {targetClassName,dependencyTree} = PYC.proccessDependencyInjection(this,className);
   if (PYC.isStubed(targetClassName)) {
     return PYC.stubList[targetClassName](params)
   };
@@ -48,6 +49,10 @@ PYC.UnStub = function(className,response){
 
 PYC.Test = function(className){
   require(PYC.getClassFilePath(className)+"TEST_"+PYC.prefix+className);
+};
+
+PYC.React = function(className){
+  return PYC.classList[className].react;
 };
 
 PYC.CreateDomNode = function(htmlEnTexto){
@@ -98,20 +103,20 @@ PYC.proccessDependencyInjection = function(context, className){
 }
 
 PYC.createPublicPrototype = function(classObject){
-  let public = {};
+  let publ = {};
 
   if (classObject.Extends !== undefined){
-    public = Object.create(PYC.classList[classObject.Extends].public); 
-    Object.defineProperty(public, 'PARENT', {
-      value:PYC.classList[classObject.Extends].public    
+    publ = Object.create(PYC.classList[classObject.Extends].publ); 
+    Object.defineProperty(publ, 'PARENT', {
+      value:PYC.classList[classObject.Extends].publ    
     });
   }else if (classObject.PrototipeSingleton !== undefined){ //ha de ser un objeto ya creado al describir la clase
-    public = Object.create(classObject.PrototipeSingleton); 
+    publ = Object.create(classObject.PrototipeSingleton); 
   }
 
-  classObject.publ(public);
+  classObject.publ(publ);
 
-  return public;
+  return publ;
 };
 
 PYC.createAttributesPrototype = function(classObject){
@@ -142,7 +147,7 @@ PYC.createObjectBuilder = (className,classObject) => (params,forcedPrivate) => {
 PYC.instantiateLinkedObject = (className,forcedPrivate) => {
   let newObject;
   if (forcedPrivate === undefined){
-    newObject = Object.create(PYC.classList[className].public);
+    newObject = Object.create(PYC.classList[className].publ);
     newObject.objectType = className;
   }else{
     newObject = forcedPrivate;
@@ -691,3 +696,5 @@ PYC.getClassDocumentation = function(className){
      console.log(refinedDoc);
   return refinedDoc;
 };
+
+export default PYC;
