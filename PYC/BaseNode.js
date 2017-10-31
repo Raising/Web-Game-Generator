@@ -224,5 +224,14 @@ PYC.Describe("BaseNode",{
         }; 
     }; 
     
+  },
+
+  react: function(props) {
+   
+
+    return (
+      <li >{props.nodeType}  </li>
+    );
+    
   }
 });

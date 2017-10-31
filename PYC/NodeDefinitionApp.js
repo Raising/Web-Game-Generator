@@ -6,13 +6,15 @@ PYC.Describe("NodeDefinitionApp",{
   },
   publ: function(me,params){
   },
-  react: function(params) {
-    let NodeSelector = PYC.React("NodeSelector");
-    let NodeManipulator = PYC.React("NodeManipulator");
+  react: function(props) {
+    const NodeSelector = PYC.React("NodeSelector");
+    const NodeManipulator = PYC.React("NodeManipulator");
 
     return (
       <div>
-        <NodeSelector />
+        <NodeSelector 
+          nodes={props.nodes}
+        />
         <NodeManipulator />
       </div>
     );

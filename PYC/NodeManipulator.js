@@ -7,11 +7,8 @@ PYC.Describe("NodeManipulator",{
   publ: function(me,params){
   },
   react: function(params) {
-    
-
     return (
       <div>
-       
       </div>
     );
   }

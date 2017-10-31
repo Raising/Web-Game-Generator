@@ -9,7 +9,7 @@ module.exports = function (grunt) {
     let PYCclassesList = ["PYC/*.js","PYC/**/*.js","PYC/**/**/*.js"];
     let modulesList = ["module/*.js"];
 
-
+    let verbose = false;
     // Project configuration.
     grunt.initConfig({
                 // Metadata.
@@ -126,30 +126,35 @@ module.exports = function (grunt) {
             },
         },
         concat: {
-            options: {
-                banner: '<%= banner %>',
-                stripBanners: false,
-                process: function (src, filename) {
-                    let indentSize = 23;
-                    if (filename.indexOf('.js') >= 0) {
-                        filename = filename.split("/").pop();
-                      
-                        
-                        src = grunt.util.normalizelf(src);
-                        return src.split(grunt.util.linefeed).map(function (line,lineNum) {
-                            let numberAndFilename = ( filename + ":" + lineNum + " ".repeat(indentSize)).substring(0,indentSize);
-                            return "/*" + numberAndFilename + " */ " + line;
-                        }).join(grunt.util.linefeed);
-                    }
-                    else return src;
-                }
-            },
             classes:{
+                options: {
+                    banner: '<%= banner %>',
+                    stripBanners: false,
+                    process: function (src, filename) {
+                        let indentSize = 23;
+                        if (filename.indexOf('.js') >= 0) {
+                            filename = filename.split("/").pop();
+                          
+                            
+                            src = grunt.util.normalizelf(src);
+                            return src.split(grunt.util.linefeed).map(function (line,lineNum) {
+                                let numberAndFilename = ( filename + ":" + lineNum + " ".repeat(indentSize)).substring(0,indentSize);
+                                return ( verbose?"/*" + numberAndFilename + " */ ":"") + line;
+                            }).join(grunt.util.linefeed);
+                        }
+                        else return src;
+                    }
+                },
 
                 src: PYCclassesList,
                 dest: "build/js/WGG_Classes.js"
             },
             descriptorStrife:{
+                options: {
+                    banner: "",
+                    stripBanners: false,
+                    footer: "export default gameDescription;",
+                },
                 src: ["GameDescriptors/gameDescription.js","GameDescriptors/STRIFE/*.js"],
                 dest: "GameDescriptors/STRIFE.js"
             },
