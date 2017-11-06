@@ -1,4 +1,4 @@
-REH = {
+let REH = {
   author:'Ignacio Medina Castillo',
   contact:'ignacio.medina.castillo@gmail.com',
   description: 'this piece of code implement a event handler functionality in the' +

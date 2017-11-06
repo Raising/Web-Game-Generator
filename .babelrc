@@ -1,3 +1,4 @@
 {
-  "presets": ["react", "es2017", "stage-0"]
+  // aniadir "stage-0" para compilar async a generadores
+  "presets": ["react"],
 }

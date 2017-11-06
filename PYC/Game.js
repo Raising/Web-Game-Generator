@@ -48,15 +48,23 @@ PYC.Describe("Game",{
     me.createEntity = async function (createNode,inputParams){
       var me = this;
       let entity = await (PYC.Create(me)("Entity",createNode));
-      me.addEntity( entity);
+      await me.addEntity( entity); //REDUX
       return entity;
     };
 
 
-    me.addEntity = function (entity){
+    me.addEntity = async function (entity){
       var me = this;
       me.entitiesId[entity.$Id()] = entity;
-      me.entitiesName[entity.name] = entity;
+      //me.entitiesName[entity.name] = entity;
+      await PYC.store.nodeAction({
+          type:"ModifyAttribute",
+          payload:{
+            entity:me.entitiesName,
+            attibute:entity.name,
+            value:entity
+          }
+        });
     };
 
     me.getEntityByName = function (entityName){

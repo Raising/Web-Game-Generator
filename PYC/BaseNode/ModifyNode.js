@@ -18,7 +18,19 @@ PYC.Describe("ModifyNode",{
       
       let entity = await me.calculateValue(me.entity,params);
       let attibuteName = await me.calculateValue(me.attribute,params);
-      entity[attibuteName] = await me.calculateValue(me.newValue,params);
+      let newValue = await me.calculateValue(me.newValue,params);
+      
+      PYC.history.push("asignation: " + entity + " [" + attibuteName + "] = " + newValue);
+      //entity[attibuteName] = await me.calculateValue(me.newValue,params); // REDUX
+      await PYC.store.nodeAction({
+          type:"ModifyAttribute",
+          payload:{
+            entity:entity,
+            attibute:attibuteName,
+            value:newValue
+          }
+        });
+
 
       return [entity[me.attribute]];
     };

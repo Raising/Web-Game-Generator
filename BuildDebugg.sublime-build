@@ -1,0 +1,4 @@
+{
+	"shell_cmd": "grunt debugg",
+	"working_dir": "$folder"
+}

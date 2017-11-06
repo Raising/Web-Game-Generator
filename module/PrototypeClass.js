@@ -1,8 +1,10 @@
-var PYC = {Author : 'Ignacio Medina Castillo', mode:'Client',prefix:''};
+import EventsHandler from '..\\module\\EventHandler';
+let PYC = {Author : 'Ignacio Medina Castillo', mode:'Client',prefix:''};
 PYC.Server = {};
 PYC.Client = {};
 PYC.classList = {};
 PYC.stubList = {};
+PYC.history = [];
 
 PYC.ID_COUNTER = 0;
 //PYC.CREATED_OBJECTS = {};

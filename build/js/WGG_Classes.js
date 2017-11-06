@@ -6,9 +6,9 @@
  *
  * Copyright 2017, Ignacio Medina Castillo 
  *
- * Released on: October 31, 2017
+ * Released on: November 6, 2017
 */
-import PYC from '..\\..\\module\\PrototypeClass';
+import PYC from '..\\..\\module\\PrototypeClass.js';
 import React, { Component } from "react";
 "use strict";
 PYC.Describe("BaseNode",{
@@ -376,15 +376,23 @@ PYC.Describe("Game",{
     me.createEntity = async function (createNode,inputParams){
       var me = this;
       let entity = await (PYC.Create(me)("Entity",createNode));
-      me.addEntity( entity);
+      await me.addEntity( entity); //REDUX
       return entity;
     };
 
 
-    me.addEntity = function (entity){
+    me.addEntity = async function (entity){
       var me = this;
       me.entitiesId[entity.$Id()] = entity;
-      me.entitiesName[entity.name] = entity;
+      //me.entitiesName[entity.name] = entity;
+      await PYC.store.nodeAction({
+          type:"ModifyAttribute",
+          payload:{
+            entity:me.entitiesName,
+            attibute:entity.name,
+            value:entity
+          }
+        });
     };
 
     me.getEntityByName = function (entityName){
@@ -606,7 +614,19 @@ PYC.Describe("ModifyNode",{
       
       let entity = await me.calculateValue(me.entity,params);
       let attibuteName = await me.calculateValue(me.attribute,params);
-      entity[attibuteName] = await me.calculateValue(me.newValue,params);
+      let newValue = await me.calculateValue(me.newValue,params);
+      
+      PYC.history.push("asignation: " + entity + " [" + attibuteName + "] = " + newValue);
+      //entity[attibuteName] = await me.calculateValue(me.newValue,params); // REDUX
+      await PYC.store.nodeAction({
+          type:"ModifyAttribute",
+          payload:{
+            entity:entity,
+            attibute:attibuteName,
+            value:newValue
+          }
+        });
+
 
       return [entity[me.attribute]];
     };
