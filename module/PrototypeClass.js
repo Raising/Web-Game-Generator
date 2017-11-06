@@ -5,6 +5,7 @@ PYC.Client = {};
 PYC.classList = {};
 PYC.stubList = {};
 PYC.history = [];
+PYC.storeActions = {};
 
 PYC.ID_COUNTER = 0;
 //PYC.CREATED_OBJECTS = {};
@@ -21,6 +22,8 @@ PYC.Describe = function(className,classObject){
     react :       classObject.react,
     DOC :         classObject
   };
+
+  PYC.storeActions = Object.assign(PYC.storeActions, classObject.storeActions);
 };
 
 PYC.Create = function(className,params = {}){

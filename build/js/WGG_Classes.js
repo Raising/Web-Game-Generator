@@ -8,7 +8,7 @@
  *
  * Released on: November 6, 2017
 */
-import PYC from '..\\..\\module\\PrototypeClass.js';
+import PYC from '..\\..\\module\\PrototypeClass';
 import React, { Component } from "react";
 "use strict";
 PYC.Describe("BaseNode",{
@@ -385,20 +385,33 @@ PYC.Describe("Game",{
       var me = this;
       me.entitiesId[entity.$Id()] = entity;
       //me.entitiesName[entity.name] = entity;
-      await PYC.store.nodeAction({
-          type:"ModifyAttribute",
-          payload:{
-            entity:me.entitiesName,
-            attibute:entity.name,
-            value:entity
-          }
-        });
+      PYC.store.dispatch({
+        type: 'MODIFY_ATTRIBUTE',
+        payload:{
+          entity:me.entitiesName,
+          attibute:entity.name,
+          value:entity
+        }
+      });
+
     };
 
     me.getEntityByName = function (entityName){
       var me = this;
       return me.entitiesName[entityName];
     };
+  },
+
+  storeActions:{
+    MODIFY_ATTRIBUTE: function({entity = {},attibute = "",value = {}}){
+      return entity[attibute] = value;
+    },
+
+    START_GAME: function({gameDescription}){
+      let game = PYC.Create({   dependencyTree:{}, dispatcher:{} })("Game",gameDescription);
+      game.startGame("main"); 
+      return game;
+    },
   }
 });
 "use strict";
@@ -606,9 +619,7 @@ PYC.Describe("ModifyNode",{
       var me = this;
       var params = {};
       me.addParamsToObjectWithNames(params,me.inputNames,inputParams);
-
       console.log(me.description);
-
       
       // TODO when adding a non setted property add it in the getter setter way so it raises events.
       
@@ -618,15 +629,15 @@ PYC.Describe("ModifyNode",{
       
       PYC.history.push("asignation: " + entity + " [" + attibuteName + "] = " + newValue);
       //entity[attibuteName] = await me.calculateValue(me.newValue,params); // REDUX
-      await PYC.store.nodeAction({
-          type:"ModifyAttribute",
-          payload:{
-            entity:entity,
-            attibute:attibuteName,
-            value:newValue
-          }
-        });
-
+ 
+      PYC.store.dispatch({
+        type: 'MODIFY_ATTRIBUTE',
+        payload:{
+          entity:entity,
+          attibute:attibuteName,
+          value:newValue
+        }
+      });
 
       return [entity[me.attribute]];
     };

@@ -57,19 +57,32 @@ PYC.Describe("Game",{
       var me = this;
       me.entitiesId[entity.$Id()] = entity;
       //me.entitiesName[entity.name] = entity;
-      await PYC.store.nodeAction({
-          type:"ModifyAttribute",
-          payload:{
-            entity:me.entitiesName,
-            attibute:entity.name,
-            value:entity
-          }
-        });
+      PYC.store.dispatch({
+        type: 'MODIFY_ATTRIBUTE',
+        payload:{
+          entity:me.entitiesName,
+          attibute:entity.name,
+          value:entity
+        }
+      });
+
     };
 
     me.getEntityByName = function (entityName){
       var me = this;
       return me.entitiesName[entityName];
     };
+  },
+
+  storeActions:{
+    MODIFY_ATTRIBUTE: function({entity = {},attibute = "",value = {}}){
+      return entity[attibute] = value;
+    },
+
+    START_GAME: function({gameDescription}){
+      let game = PYC.Create({   dependencyTree:{}, dispatcher:{} })("Game",gameDescription);
+      game.startGame("main"); 
+      return game;
+    },
   }
 });

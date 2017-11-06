@@ -10,9 +10,7 @@ PYC.Describe("ModifyNode",{
       var me = this;
       var params = {};
       me.addParamsToObjectWithNames(params,me.inputNames,inputParams);
-
       console.log(me.description);
-
       
       // TODO when adding a non setted property add it in the getter setter way so it raises events.
       
@@ -22,15 +20,15 @@ PYC.Describe("ModifyNode",{
       
       PYC.history.push("asignation: " + entity + " [" + attibuteName + "] = " + newValue);
       //entity[attibuteName] = await me.calculateValue(me.newValue,params); // REDUX
-      await PYC.store.nodeAction({
-          type:"ModifyAttribute",
-          payload:{
-            entity:entity,
-            attibute:attibuteName,
-            value:newValue
-          }
-        });
-
+ 
+      PYC.store.dispatch({
+        type: 'MODIFY_ATTRIBUTE',
+        payload:{
+          entity:entity,
+          attibute:attibuteName,
+          value:newValue
+        }
+      });
 
       return [entity[me.attribute]];
     };
