@@ -1,4 +1,10 @@
 gameDescription.players =[
-        {name:"Player A"},
-        {name:"Player B"},
-	];
+    {
+        description:"First Player",
+        name:"Player A"
+    },
+    {
+        description:"Second Player",
+        name:"Player B"
+    },
+    ];

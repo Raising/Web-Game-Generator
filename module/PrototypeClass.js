@@ -51,11 +51,11 @@ PYC.Stub = function(className,response){
 PYC.UnStub = function(className,response){
   delete PYC.stubList[className];
 };
-
+/*
 PYC.Test = function(className){
   require(PYC.getClassFilePath(className)+"TEST_"+PYC.prefix+className);
 };
-
+*/
 PYC.React = function(className){
   return PYC.classList[className].react;
 };
@@ -242,7 +242,7 @@ PYC.validateClass = function (className,classObject){
 PYC.loadClass = function(className){
   PYC[PYC.mode].require(className);
 };
-
+/*
 PYC.Server.require = function(className){
 
   if (PYC.classList[className] === undefined){
@@ -253,6 +253,7 @@ PYC.Server.require = function(className){
     }
   }
 };
+*/
 
 
 

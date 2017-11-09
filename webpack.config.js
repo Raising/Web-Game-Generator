@@ -7,7 +7,7 @@ module.exports = {
     filename: "nodeDefinition.js"
   },*/
   entry: {
-      '.\\NodeManipulation\\nodeManipulation': '.\\NodeManipulation\\nodeManipulationIndex.js',
+      '.\\GameManipulation\\gameManipulation': '.\\GameManipulation\\gameManipulationIndex.js',
       '.\\GameTest\\gameExecution': '.\\GameTest\\gameExecutionIndex.js',
   },
   output: {

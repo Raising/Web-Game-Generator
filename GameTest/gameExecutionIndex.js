@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, ActionTypes } from 'redux';
+import { createStore } from 'redux';
 import createReactClass from 'create-react-class';
 import Classes from '..\\build\\js\\WGG_Classes';
 import PYC from '..\\module\\PrototypeClass.js';

@@ -6,7 +6,7 @@
  *
  * Copyright 2017, Ignacio Medina Castillo 
  *
- * Released on: November 6, 2017
+ * Released on: November 9, 2017
 */
 import PYC from '..\\..\\module\\PrototypeClass';
 import React, { Component } from "react";

@@ -540,9 +540,15 @@ gameDescription.nodes.Modify =
     }
 };
 gameDescription.players =[
-        {name:"Player A"},
-        {name:"Player B"},
-	];
+    {
+        description:"First Player",
+        name:"Player A"
+    },
+    {
+        description:"Second Player",
+        name:"Player B"
+    },
+    ];
 gameDescription.nodes.Selector = 
 {
      selectChampionFromHand:{description:"select Champion From a Player Hand", inputNames:["player"], 
