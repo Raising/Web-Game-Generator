@@ -1,11 +1,10 @@
 import React from "react";
 import {connect} from 'react-redux';
 
-const MenuNodeHead = function({basePath = "",selectThisElement}){
-    if (basePath === "") return <div/>;
+const MenuNodeHead = function({basePath = "",onClick}){
     let name = basePath.split(".").pop(); 
     return(
-      <a onClick={selectThisElement} >{name}</a>
+      <a onClick={onClick} >{name}</a>
     );
 };
 
@@ -17,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
   
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
-        selectThisElement : () => dispatch({
+        onClick : () => dispatch({
             type: "SELECT_MENU_ELEMENT",
             payload: {
                 elementId: ownProps.basePath
@@ -26,10 +25,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     }
 }
   
-
-//export default TreeMenu;
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(MenuNodeHead)
-
+)(MenuNodeHead);

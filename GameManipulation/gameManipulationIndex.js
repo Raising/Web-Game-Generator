@@ -5,7 +5,7 @@ import { createStore } from 'redux'
 import { Provider } from "react-redux";
 import createReactClass from 'create-react-class';
 import STRIFE from "..\\GameDescriptors\\STRIFE.js";
-import gameManipulationReducer from ".\\gameManipulationReducer.js";
+import gameManipulationReducer from ".\\GameManipulationReducer.js";
 
 import GameManipulationApp from ".\\Views\\GameManipulationApp"
 

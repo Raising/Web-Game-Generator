@@ -2,15 +2,22 @@ import React from "react";
 import {connect} from 'react-redux';
 import TreeMenu from ".\\TreeMenu.js";
 
-const MenuNodeChildren = function({basePath = "",children}){
+const MenuNodeChildren = function({isSelected = false,basePath = "",children}){
+   
+    let className = "nav nav-list nav-menu-list-style ";
+    if (isSelected){
+        className += " selected"; 
+    }
+
     return (
-    <ul>
+    <ul className={className}>
         {children}
     </ul>);
 };
 
+
 const getTreeElementFromPath = (tree,path) => {
-    let result = tree;   
+    let result = tree;
     if (path === "") return result;
     for (let subPathId of path.split(".")){
         result = result[subPathId];
@@ -20,21 +27,9 @@ const getTreeElementFromPath = (tree,path) => {
 
 const mapStateToProps = (state, ownProps) => {
     let children = getTreeElementFromPath(state.gameModel,ownProps.basePath);
-    let childrenElements = [];
-    let splitedPathIndex = ownProps.basePath.split(".").length -1 ;
-
-
-    if (  typeof children === "object" && 
-        children.description === undefined && 
-            (ownProps.basePath === "" || 
-            state.selectedMenuPath.indexOf(ownProps.basePath.split(".").pop()) === splitedPathIndex)
-    ){
+    let childrenElements  = [];
+    if (children.description === undefined ){
         childrenElements = Object.keys(children).map((childrenKey) => {
-            let childrenSelection = [];
-            if (state.selectedMenuPath[0] === childrenKey){
-            childrenSelection = state.selectedMenuPath.slice();
-            childrenSelection.shift();
-            }
             return (
             <TreeMenu
                 key = {childrenKey}
@@ -42,11 +37,12 @@ const mapStateToProps = (state, ownProps) => {
             /> 
             );
         });
-    } 
+    }
 
-
+    let splitedPathIndex = ownProps.basePath.split(".").length -1;
     return {
-      children : childrenElements
+      children : childrenElements,
+      isSelected : (ownProps.basePath === "" || state.selectedMenuPath.indexOf(ownProps.basePath.split(".").pop()) === splitedPathIndex)
     };
 };
 
@@ -57,4 +53,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(MenuNodeChildren)
+)(MenuNodeChildren);

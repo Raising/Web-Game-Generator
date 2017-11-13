@@ -7,8 +7,8 @@ module.exports = {
     filename: "nodeDefinition.js"
   },*/
   entry: {
-      '.\\GameManipulation\\gameManipulation': '.\\GameManipulation\\gameManipulationIndex.js',
-      '.\\GameTest\\gameExecution': '.\\GameTest\\gameExecutionIndex.js',
+      '.\\GameManipulation\\GameManipulation': '.\\GameManipulation\\GameManipulationIndex.js',
+      '.\\GameTest\\GameExecution': '.\\GameTest\\GameExecutionIndex.js',
   },
   output: {
       path: __dirname,

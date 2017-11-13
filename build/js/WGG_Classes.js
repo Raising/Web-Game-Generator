@@ -6,7 +6,7 @@
  *
  * Copyright 2017, Ignacio Medina Castillo 
  *
- * Released on: November 9, 2017
+ * Released on: November 13, 2017
 */
 import PYC from '..\\..\\module\\PrototypeClass';
 import React, { Component } from "react";
@@ -23,13 +23,13 @@ PYC.Describe("BaseNode",{
       var me = this;
       let nodeDescription;
       if (nodeInfo.id !== undefined){
-        nodeDescription = me.game.nodes[nodeInfo.nodeType][nodeInfo.id];  
+        nodeDescription = me.game.nodes[nodeInfo.id];  
       }
       else{
         nodeDescription = nodeInfo; 
       } 
       //TODO debe gestionar las estructuras de control en si mismo en caso dqe nodo de flujo
-      return await PYC.Create(me)(nodeInfo.nodeType + "Node",Object.assign({game:me.game,callerInfo:nodeInfo},nodeDescription)).execute(inputParams);
+      return await PYC.Create(me)(nodeDescription.nodeType + "Node",Object.assign({game:me.game,callerInfo:nodeInfo},nodeDescription)).execute(inputParams);
     };
 
     me.calculateValue = async function(valueDescriptor,inputParams){
@@ -345,7 +345,7 @@ PYC.Describe("Game",{
   publ: function(me){ 
     me.startGame = async function(firstFlowNodeName){
       var me = this;
-      await PYC.Create(me)("FlowNode",Object.assign({game:me},me.nodes.Flow[firstFlowNodeName])).execute();
+      await PYC.Create(me)("FlowNode",Object.assign({game:me},me.nodes[firstFlowNodeName])).execute();
       //return me.runFlow(me.nodes.Flow[firstFlowNodeName]);
     };
 

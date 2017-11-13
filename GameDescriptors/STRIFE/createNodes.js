@@ -1,16 +1,20 @@
-gameDescription.nodes.Create = 
+gameDescription.nodes = Object.assign(gameDescription.nodes,
 {
     smartCounter:{
+        nodeType: "Create",
+        name: "smartCounter",
         description: "smartCounter",
         inputNames:["name","value"],
         attributes:{
             type: "smartCounter",
             name: {type:"param",name:"name"},
             value: {type:"param",name:"value"}
-        },
+        }
     },
 
      playerLegacyArea:{
+         nodeType: "Create",
+         name: "playerLegacyArea",
         description: "Player LegacyArea",
         inputNames:["playerOwner"],
         attributes:{
@@ -21,10 +25,12 @@ gameDescription.nodes.Create =
             },
             owner: {type:"param",name:"playerOwner"},
             location: {type:"param",name:"playerOwner"}
-        },
+        }
     },
  
      playerBattleArea:{
+         nodeType: "Create",
+         name: "playerBattleArea",
         description: "Player BattleArea",
         inputNames:["playerOwner"],
         attributes:{
@@ -35,11 +41,13 @@ gameDescription.nodes.Create =
             },
             owner: {type:"param",name:"playerOwner"},
             location: {type:"param",name:"playerOwner"}
-        },
+        }
     },
  
 
     playerHand:{
+        nodeType: "Create",
+        name: "playerHand",
         description: "Player Hand",
         inputNames:["playerOwner"],
         attributes:{
@@ -50,10 +58,12 @@ gameDescription.nodes.Create =
             },
             owner: {type:"param",name:"playerOwner"},
             location: {type:"param",name:"playerOwner"}
-        },
+        }
     },
  
-            champion1: {
+            champion1:{
+                nodeType: "Create",
+                name: "champion1",
                 description: "Champion: Monk",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -68,6 +78,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion2: {
+                nodeType: "Create",
+                name: "champion2",
                 description: "Champion: Necromancer",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -82,6 +94,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion3: {
+                nodeType: "Create",
+                name: "champion3",
                 description: "Champion: Assasin",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -96,6 +110,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion4: {
+                nodeType: "Create",
+                name: "champion4",
                 description: "Champion: Wizard",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -110,6 +126,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion5: {
+                nodeType: "Create",
+                name: "champion5",
                 description: "Champion: Paladin",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -124,6 +142,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion6: {
+                nodeType: "Create",
+                name: "champion6",
                 description: "Champion: Ranger",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -138,6 +158,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion7: {
+                nodeType: "Create",
+                name: "champion7",
                 description: "Champion: Druid",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -152,6 +174,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion8: {
+                nodeType: "Create",
+                name: "champion8",
                 description: "Champion: Warrior",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -166,6 +190,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion9: {
+                nodeType: "Create",
+                name: "champion9",
                 description: "Champion: Knight",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -180,6 +206,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion10: {
+                nodeType: "Create",
+                name: "champion10",
                 description: "Champion: Barbarian",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -195,6 +223,8 @@ gameDescription.nodes.Create =
             },
 
     locationDeck:{
+        nodeType: "Create",
+        name: "locationDeck",
         description: "Location Deck",
         inputNames:["playerOwner"],
         attributes:{
@@ -205,6 +235,8 @@ gameDescription.nodes.Create =
     },
 
             location1:{
+                nodeType: "Create",
+                name: "location1",
                 description: "Location: Then Endless Green",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -217,6 +249,8 @@ gameDescription.nodes.Create =
                 }
             },
             location2:{
+                nodeType: "Create",
+                name: "location2",
                 description: "Location: Cathedral Of Light",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -229,6 +263,8 @@ gameDescription.nodes.Create =
                 }
             },
             location3:{
+                nodeType: "Create",
+                name: "location3",
                 description: "Location: Shadow Keep",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -241,6 +277,8 @@ gameDescription.nodes.Create =
                 }
             },
             location4:{
+                nodeType: "Create",
+                name: "location4",
                 description: "Location: Camerion's Tower",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -253,6 +291,8 @@ gameDescription.nodes.Create =
                 }
             },
             location5:{
+                nodeType: "Create",
+                name: "location5",
                 description: "Location: Nethil Yara",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -265,6 +305,8 @@ gameDescription.nodes.Create =
                 }
             },
             location6:{
+                nodeType: "Create",
+                name: "location6",
                 description: "Location: Temple Of Shin Ti Lal",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -277,6 +319,8 @@ gameDescription.nodes.Create =
                 }
             },
             location7:{
+                nodeType: "Create",
+                name: "location7",
                 description: "Location: Baladon's Rock",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -289,6 +333,8 @@ gameDescription.nodes.Create =
                 }
             },
             location8:{
+                nodeType: "Create",
+                name: "location8",
                 description: "Location: Ravager's Wastes",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -301,6 +347,8 @@ gameDescription.nodes.Create =
                 }
             },
             location9:{
+                nodeType: "Create",
+                name: "location9",
                 description: "Location: Kingdom Of Astaria",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -313,6 +361,8 @@ gameDescription.nodes.Create =
                 }
             },
             location10:{
+                nodeType: "Create",
+                name: "location10",
                 description: "Location: Pit Of Souls",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -324,6 +374,4 @@ gameDescription.nodes.Create =
                     location: {type:"param",name:"parent"}
                 }
             },
-
-
-};
+});

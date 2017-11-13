@@ -3,7 +3,14 @@ import {connect} from 'react-redux';
 import MenuNodeHead from ".\\MenuNodeHead.js";
 import MenuNodeChildren from ".\\MenuNodeChildren.js";
 
-const TreeMenu = function ({modelKey="",basePath = ""}){  
+const TreeMenu = function ({basePath = ""}){  
+if (basePath === ""){
+    return (
+        <div className="col-xs-2 well no-padding">
+            <MenuNodeChildren basePath = {basePath}/>
+        </div>
+    )
+}
   return (
     <li>
         <MenuNodeHead basePath = {basePath}/>

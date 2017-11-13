@@ -11,13 +11,13 @@ PYC.Describe("BaseNode",{
       var me = this;
       let nodeDescription;
       if (nodeInfo.id !== undefined){
-        nodeDescription = me.game.nodes[nodeInfo.nodeType][nodeInfo.id];  
+        nodeDescription = me.game.nodes[nodeInfo.id];  
       }
       else{
         nodeDescription = nodeInfo; 
       } 
       //TODO debe gestionar las estructuras de control en si mismo en caso dqe nodo de flujo
-      return await PYC.Create(me)(nodeInfo.nodeType + "Node",Object.assign({game:me.game,callerInfo:nodeInfo},nodeDescription)).execute(inputParams);
+      return await PYC.Create(me)(nodeDescription.nodeType + "Node",Object.assign({game:me.game,callerInfo:nodeInfo},nodeDescription)).execute(inputParams);
     };
 
     me.calculateValue = async function(valueDescriptor,inputParams){

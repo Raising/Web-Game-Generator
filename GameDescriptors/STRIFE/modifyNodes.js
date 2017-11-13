@@ -1,6 +1,8 @@
-gameDescription.nodes.Modify = 
+gameDescription.nodes = Object.assign(gameDescription.nodes, 
 {
     increaseRoundCounter:{
+        nodeType:"Modify",
+        name:"increaseRoundCounter",
         description: "add one to the ROUND_COUNTER value",
         entity: {type:"entityByName",name:"ROUND_COUNTER"},
         attribute: "value",
@@ -12,6 +14,8 @@ gameDescription.nodes.Modify =
         }
     },
     increaseTurnCounter:{
+        nodeType:"Modify",
+        name:"increaseTurnCounter",
         description: "add one to the TURN_COUNTER value",
         entity: {type:"entityByName",name:"TURN_COUNTER"},
         attribute: "value",
@@ -23,6 +27,8 @@ gameDescription.nodes.Modify =
         }
     },
     resetTurnCounter:{
+        nodeType:"Modify",
+        name:"resetTurnCounter",
         description: "set TURN_COUNTER value to 0",
         entity: {type:"entityByName",name:"TURN_COUNTER"},
         attribute: "value",
@@ -31,6 +37,8 @@ gameDescription.nodes.Modify =
         }
     },
     moveEntityTo:{
+        nodeType:"Modify",
+        name:"moveEntityTo",
         description: "move entity to other location",
         inputNames:["entity","nextLocation"],
         outputNames:[],
@@ -42,6 +50,8 @@ gameDescription.nodes.Modify =
     },
 
     addProperty:{
+        nodeType:"Modify",
+        name:"addProperty",
         description: "add Property to entity",
         inputNames:["entity","propertyName","propertyValue"],
         outputNames:[],
@@ -50,4 +60,4 @@ gameDescription.nodes.Modify =
         newValue:  {type:"param",name:"propertyValue"},
         
     }
-};
+});

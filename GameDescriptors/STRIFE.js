@@ -1,25 +1,24 @@
 var gameDescription = {
     players:[],
-    nodes:{
-        Create:{},
-        Flow:{},
-        Modify:{},
-        Select:{}
-    }
+    nodes:{}
 }
-gameDescription.nodes.Create = 
+gameDescription.nodes = Object.assign(gameDescription.nodes,
 {
     smartCounter:{
+        nodeType: "Create",
+        name: "smartCounter",
         description: "smartCounter",
         inputNames:["name","value"],
         attributes:{
             type: "smartCounter",
             name: {type:"param",name:"name"},
             value: {type:"param",name:"value"}
-        },
+        }
     },
 
      playerLegacyArea:{
+         nodeType: "Create",
+         name: "playerLegacyArea",
         description: "Player LegacyArea",
         inputNames:["playerOwner"],
         attributes:{
@@ -30,10 +29,12 @@ gameDescription.nodes.Create =
             },
             owner: {type:"param",name:"playerOwner"},
             location: {type:"param",name:"playerOwner"}
-        },
+        }
     },
  
      playerBattleArea:{
+         nodeType: "Create",
+         name: "playerBattleArea",
         description: "Player BattleArea",
         inputNames:["playerOwner"],
         attributes:{
@@ -44,11 +45,13 @@ gameDescription.nodes.Create =
             },
             owner: {type:"param",name:"playerOwner"},
             location: {type:"param",name:"playerOwner"}
-        },
+        }
     },
  
 
     playerHand:{
+        nodeType: "Create",
+        name: "playerHand",
         description: "Player Hand",
         inputNames:["playerOwner"],
         attributes:{
@@ -59,10 +62,12 @@ gameDescription.nodes.Create =
             },
             owner: {type:"param",name:"playerOwner"},
             location: {type:"param",name:"playerOwner"}
-        },
+        }
     },
  
-            champion1: {
+            champion1:{
+                nodeType: "Create",
+                name: "champion1",
                 description: "Champion: Monk",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -77,6 +82,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion2: {
+                nodeType: "Create",
+                name: "champion2",
                 description: "Champion: Necromancer",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -91,6 +98,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion3: {
+                nodeType: "Create",
+                name: "champion3",
                 description: "Champion: Assasin",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -105,6 +114,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion4: {
+                nodeType: "Create",
+                name: "champion4",
                 description: "Champion: Wizard",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -119,6 +130,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion5: {
+                nodeType: "Create",
+                name: "champion5",
                 description: "Champion: Paladin",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -133,6 +146,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion6: {
+                nodeType: "Create",
+                name: "champion6",
                 description: "Champion: Ranger",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -147,6 +162,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion7: {
+                nodeType: "Create",
+                name: "champion7",
                 description: "Champion: Druid",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -161,6 +178,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion8: {
+                nodeType: "Create",
+                name: "champion8",
                 description: "Champion: Warrior",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -175,6 +194,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion9: {
+                nodeType: "Create",
+                name: "champion9",
                 description: "Champion: Knight",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -189,6 +210,8 @@ gameDescription.nodes.Create =
                 }
             },
             champion10: {
+                nodeType: "Create",
+                name: "champion10",
                 description: "Champion: Barbarian",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -204,6 +227,8 @@ gameDescription.nodes.Create =
             },
 
     locationDeck:{
+        nodeType: "Create",
+        name: "locationDeck",
         description: "Location Deck",
         inputNames:["playerOwner"],
         attributes:{
@@ -214,6 +239,8 @@ gameDescription.nodes.Create =
     },
 
             location1:{
+                nodeType: "Create",
+                name: "location1",
                 description: "Location: Then Endless Green",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -226,6 +253,8 @@ gameDescription.nodes.Create =
                 }
             },
             location2:{
+                nodeType: "Create",
+                name: "location2",
                 description: "Location: Cathedral Of Light",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -238,6 +267,8 @@ gameDescription.nodes.Create =
                 }
             },
             location3:{
+                nodeType: "Create",
+                name: "location3",
                 description: "Location: Shadow Keep",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -250,6 +281,8 @@ gameDescription.nodes.Create =
                 }
             },
             location4:{
+                nodeType: "Create",
+                name: "location4",
                 description: "Location: Camerion's Tower",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -262,6 +295,8 @@ gameDescription.nodes.Create =
                 }
             },
             location5:{
+                nodeType: "Create",
+                name: "location5",
                 description: "Location: Nethil Yara",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -274,6 +309,8 @@ gameDescription.nodes.Create =
                 }
             },
             location6:{
+                nodeType: "Create",
+                name: "location6",
                 description: "Location: Temple Of Shin Ti Lal",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -286,6 +323,8 @@ gameDescription.nodes.Create =
                 }
             },
             location7:{
+                nodeType: "Create",
+                name: "location7",
                 description: "Location: Baladon's Rock",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -298,6 +337,8 @@ gameDescription.nodes.Create =
                 }
             },
             location8:{
+                nodeType: "Create",
+                name: "location8",
                 description: "Location: Ravager's Wastes",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -310,6 +351,8 @@ gameDescription.nodes.Create =
                 }
             },
             location9:{
+                nodeType: "Create",
+                name: "location9",
                 description: "Location: Kingdom Of Astaria",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -322,6 +365,8 @@ gameDescription.nodes.Create =
                 }
             },
             location10:{
+                nodeType: "Create",
+                name: "location10",
                 description: "Location: Pit Of Souls",
                 inputNames:["playerOwner","parent"],
                 attributes:{
@@ -333,29 +378,33 @@ gameDescription.nodes.Create =
                     location: {type:"param",name:"parent"}
                 }
             },
-
-
-};
-gameDescription.nodes.Flow = 
+});
+gameDescription.nodes = Object.assign(gameDescription.nodes, 
 {
     main:{
+        nodeType:"Flow",
+        name:"main",
         description: "Stryfe: Legacy Of The Ethernals",
         nodes:[
-            {id:"initGame",nodeType:"Flow"},
-            {id:"coreGame",nodeType:"Flow"},
-            {id:"endGame",nodeType:"Flow"},
+            {id:"initGame"},
+            {id:"coreGame"},
+            {id:"endGame"},
         ]
     },
 
     coreGame:{
+        nodeType:"Flow",
+        name:"coreGame",
         description: "Play the sucesive rounds",
         inputNames:[],
         outputNames:[],
         nodes:[
-            {id:"playRound",nodeType:"Flow", control:  {type:"while", condition:{ operator:"<", operands:[ {type:"entityProperty",entity:"ROUND_COUNTER",attribute:"value"}, 2]}}},                  
+            {id:"playRound", control:  {type:"while", condition:{ operator:"<", operands:[ {type:"entityProperty",entity:"ROUND_COUNTER",attribute:"value"}, 2]}}},                  
         ]   
     },
     initGame:{
+        nodeType:"Flow",
+        name:"initGame",
         description: "Setup initial game status",
         inputNames:[],
         outputNames:[],   
@@ -365,46 +414,60 @@ gameDescription.nodes.Flow =
             {nodeType:"Primitive", outputNames:["value:cero"], value: 0},
             {id:"smartCounter",nodeType:"Create",inputNames:["string:roundCounter","value:cero"],outputNames:["roundCounter"]},
             {id:"smartCounter",nodeType:"Create",inputNames:["string:turnCounter","value:cero"],outputNames:["turnCounter"]},
-            {id:"initPlayersDecks",nodeType:"Flow", control:  {type:"simultaneous", nodeSpecificInfo:{type:"game",attribute:"players"}}},
-            {id:"initLocationsDeck",nodeType:"Flow"},
-            {id:"initPlayersScrore",nodeType:"Flow"},
+            {id:"initPlayersDecks", control:  {type:"simultaneous", nodeSpecificInfo:{type:"game",attribute:"players"}}},
+            {id:"initLocationsDeck"},
+            {id:"initPlayersScrore"},
         ],
     },
-    endGame:{description:"Count points and  decide the winner",nodes:[]},
+    endGame:{
+        nodeType:"Flow",
+        name:"endGame",description:"Count points and  decide the winner",nodes:[]},
 
     playRound:{
+        nodeType:"Flow",
+        name:"playRound",
         description:"Play Round",
         inputNames:[],
         outputNames:[],
         nodes:[
             {id:"increaseRoundCounter",nodeType:"Modify"},
             {id:"resetTurnCounter",nodeType:"Modify"},
-            {id:"playTurn",nodeType:"Flow", control:  {type:"while", condition:{ operator:"<", operands:[ {type:"entityProperty",entity:"TURN_COUNTER",attribute:"value"}, 3]}} },
+            {id:"playTurn", control:  {type:"while", condition:{ operator:"<", operands:[ {type:"entityProperty",entity:"TURN_COUNTER",attribute:"value"}, 3]}} },
         ]
     },
 
     playTurn:{
+        nodeType:"Flow",
+        name:"playTurn",
         description:"Play a complete Turn",
         inputNames:[],
         outputNames:[],
         nodes:[
              {id:"increaseTurnCounter",nodeType:"Modify"},
-             {id:"selectChampion",nodeType:"Flow", control:  {type:"simultaneous", nodeSpecificInfo:{type:"game",attribute:"players"}}},
-             {id:"battlePhase",nodeType:"Flow"},
-             {id:"legacyPhase",nodeType:"Flow"},
-             {id:"combatPhase",nodeType:"Flow"},
-             {id:"cleanUp",nodeType:"Flow",},
+             {id:"selectChampion", control:  {type:"simultaneous", nodeSpecificInfo:{type:"game",attribute:"players"}}},
+             {id:"battlePhase"},
+             {id:"legacyPhase"},
+             {id:"combatPhase"},
+             {id:"cleanUp",},
         ]
     },
 
-    selectChampion:{description:"selectChampion", inputNames:["player"], nodes:[
+    selectChampion:{
+        nodeType:"Flow",
+        name:"selectChampion",description:"selectChampion", inputNames:["player"], nodes:[
         {id:"selectChampionFromHand",nodeType:"Selector", inputNames:["player"],outputNames:["selectedChampion"]},
         {nodeType:"Primitive",inputNames:["player"], value: {type:"param",name:"player",attribute:"battleArea"}, outputNames:["battleArea"]},
         {id:"moveEntityTo",nodeType:"Modify", inputNames:["selectedChampion","battleArea"]},
     ]},
-    battlePhase:{description:"battlePhase",nodes:[]},
-    legacyPhase:{description:"legacyPhase",nodes:[]},
-    combatPhase:{description:"combatPhase",nodes:[
+    battlePhase:{
+        nodeType:"Flow",
+        name:"battlePhase",description:"battlePhase",nodes:[]},
+    legacyPhase:{
+        nodeType:"Flow",
+        name:"legacyPhase",description:"legacyPhase",nodes:[]},
+    combatPhase:{
+        nodeType:"Flow",
+        name:"combatPhase",description:"combatPhase",nodes:[
         {nodeType:"Primitive", value: {type:"reduce", group :{type:"game",attribute:"players"}, 
             comparator:{ operator:"<", operands:[ {type:"param",name:"current",attribute:"battleArea.first.power"}, {type:"param",name:"candidate",attribute:"battleArea.first.power"}]}
         }, outputNames:["winnerPlayer"]},
@@ -412,12 +475,16 @@ gameDescription.nodes.Flow =
             /// How to compare players information?
             ///
     ]},
-    cleanUp:{description:"cleanUp",nodes:[
-        {id:"cleanBattleArea",nodeType:"Flow", control:  {type:"simultaneous", nodeSpecificInfo:{type:"game",attribute:"players"}}},
+    cleanUp:{
+        nodeType:"Flow",
+        name:"cleanUp",description:"cleanUp",nodes:[
+        {id:"cleanBattleArea", control:  {type:"simultaneous", nodeSpecificInfo:{type:"game",attribute:"players"}}},
 
     ]},
 
-    cleanBattleArea:{description:"clean Battle area ",inputNames:["player"],nodes:[
+    cleanBattleArea:{
+        nodeType:"Flow",
+        name:"cleanBattleArea",description:"clean Battle area ",inputNames:["player"],nodes:[
         {nodeType:"Primitive",inputNames:["player"], value: {type:"param",name:"player",attribute:"legacyArea"}, outputNames:["legacyArea"]},
         {nodeType:"Primitive",inputNames:["player"], value: {type:"param",name:"player",attribute:"battleArea.first"}, outputNames:["battleChampion"]},
         {id:"moveEntityTo",nodeType:"Modify", inputNames:["battleChampion","legacyArea"]},
@@ -426,9 +493,11 @@ gameDescription.nodes.Flow =
 
 
 
-    initPlayersDecks:{description:"initPlayersDecks", inputNames:["player"],nodes:[
+    initPlayersDecks:{
+        nodeType:"Flow",
+        name:"initPlayersDecks",description:"initPlayersDecks", inputNames:["player"],nodes:[
         {nodeType:"Primitive", outputNames:["string:hand"], value: "hand"},
-        {id:"createPlayerHand",nodeType:"Flow", inputNames:["player"],outputNames:["playerhand"]},
+        {id:"createPlayerHand", inputNames:["player"],outputNames:["playerhand"]},
         {id:"addProperty",nodeType:"Modify", inputNames:["player","string:hand","playerhand"]},
         
         {nodeType:"Primitive", outputNames:["string:battleArea"], value: "battleArea"},
@@ -440,14 +509,20 @@ gameDescription.nodes.Flow =
         {id:"addProperty",nodeType:"Modify", inputNames:["player","string:legacyArea","playerLegacyArea"]},
     ]},
     
-    initLocationsDeck:{description:"initLocationsDeck",nodes:[
+    initLocationsDeck:{
+        nodeType:"Flow",
+        name:"initLocationsDeck",description:"initLocationsDeck",nodes:[
         {nodeType:"Primitive", outputNames:["neutralPlayer"], value: "neutralPlayer"},
-        {id:"createLocationDeck",nodeType:"Flow", inputNames:["neutralPlayer"]},
+        {id:"createLocationDeck", inputNames:["neutralPlayer"]},
     ]},
 
-    initPlayersScrore:{description:"initPlayersScrore",nodes:[]},
+    initPlayersScrore:{
+        nodeType:"Flow",
+        name:"initPlayersScrore",description:"initPlayersScrore",nodes:[]},
 
     createPlayerHand:{
+        nodeType:"Flow",
+        name:"createPlayerHand",
         description:"Create Player hand and its cards",
         inputNames:["playerOwner"],
         outputNames:["playerHand"],
@@ -467,6 +542,8 @@ gameDescription.nodes.Flow =
     },
 
     createLocationDeck:{
+        nodeType:"Flow",
+        name:"createLocationDeck",
         description:"Create the location Deck",
         inputNames:["neutralPlayer"],
         outputNames:["locationDeck"],
@@ -485,10 +562,12 @@ gameDescription.nodes.Flow =
         ]
     },
 
-};
-gameDescription.nodes.Modify = 
+});
+gameDescription.nodes = Object.assign(gameDescription.nodes, 
 {
     increaseRoundCounter:{
+        nodeType:"Modify",
+        name:"increaseRoundCounter",
         description: "add one to the ROUND_COUNTER value",
         entity: {type:"entityByName",name:"ROUND_COUNTER"},
         attribute: "value",
@@ -500,6 +579,8 @@ gameDescription.nodes.Modify =
         }
     },
     increaseTurnCounter:{
+        nodeType:"Modify",
+        name:"increaseTurnCounter",
         description: "add one to the TURN_COUNTER value",
         entity: {type:"entityByName",name:"TURN_COUNTER"},
         attribute: "value",
@@ -511,6 +592,8 @@ gameDescription.nodes.Modify =
         }
     },
     resetTurnCounter:{
+        nodeType:"Modify",
+        name:"resetTurnCounter",
         description: "set TURN_COUNTER value to 0",
         entity: {type:"entityByName",name:"TURN_COUNTER"},
         attribute: "value",
@@ -519,6 +602,8 @@ gameDescription.nodes.Modify =
         }
     },
     moveEntityTo:{
+        nodeType:"Modify",
+        name:"moveEntityTo",
         description: "move entity to other location",
         inputNames:["entity","nextLocation"],
         outputNames:[],
@@ -530,6 +615,8 @@ gameDescription.nodes.Modify =
     },
 
     addProperty:{
+        nodeType:"Modify",
+        name:"addProperty",
         description: "add Property to entity",
         inputNames:["entity","propertyName","propertyValue"],
         outputNames:[],
@@ -538,7 +625,7 @@ gameDescription.nodes.Modify =
         newValue:  {type:"param",name:"propertyValue"},
         
     }
-};
+});
 gameDescription.players =[
     {
         description:"First Player",
@@ -549,12 +636,16 @@ gameDescription.players =[
         name:"Player B"
     },
     ];
-gameDescription.nodes.Selector = 
+gameDescription.nodes = Object.assign(gameDescription.nodes, 
 {
-     selectChampionFromHand:{description:"select Champion From a Player Hand", inputNames:["player"], 
+     selectChampionFromHand:{
+         nodeType:"Selector",
+         name:"selectChampionFromHand",
+         description:"select Champion From a Player Hand", 
+         inputNames:["player"], 
         whoSelect:{type:"param",name:"player"},
         options:[
             {scope:{type:"param",name:"player",attribute:"hand.children"},restrictions:[]}
         ]
     },
-};export default gameDescription;
+});export default gameDescription;

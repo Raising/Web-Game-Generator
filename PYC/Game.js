@@ -17,7 +17,7 @@ PYC.Describe("Game",{
   publ: function(me){ 
     me.startGame = async function(firstFlowNodeName){
       var me = this;
-      await PYC.Create(me)("FlowNode",Object.assign({game:me},me.nodes.Flow[firstFlowNodeName])).execute();
+      await PYC.Create(me)("FlowNode",Object.assign({game:me},me.nodes[firstFlowNodeName])).execute();
       //return me.runFlow(me.nodes.Flow[firstFlowNodeName]);
     };
 

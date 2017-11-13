@@ -14,6 +14,5 @@ PYC.Describe("PrimitiveNode",{
 
       return [primitive];
     };
-
   }
 });
