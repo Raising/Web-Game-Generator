@@ -2,6 +2,72 @@ body{
     padding-top: 10px;
 }
 
+.nodeSurface{
+    position: relative;
+    height: 600px;
+    width : 100%;
+    background-color: rgb(242, 254, 241);
+    border: 1px solid #3bb61c;
+    border-radius: 10px;
+}
+
+.parametersColumn{
+    height: 99%;
+    width: 20px;
+    background-color: rgb(245, 245, 245);
+    position: absolute;
+    border-radius: 10px;
+    top: 0.5%;
+}
+
+.parametersColumn.input{
+    box-shadow: inset 1px 1px 1px 1px #AAA;
+    left:5px;
+}
+
+.parametersColumn.output{
+    box-shadow: inset -1px 1px 1px 1px #AAA;
+    right: 5px;
+}
+
+.parametersColumn .parameter{
+
+    position: relative;
+    max-width: 50px;
+    height: 30px;
+    background: #f3edae;
+
+    margin-top: 50px;
+    border: 1px #857c12 solid;
+    
+    overflow: hidden;
+    transition: 0.7s cubic-bezier(0.58, 0.21, 0.29, 0.94);
+    padding:2px 8px;
+}
+
+.parametersColumn .parameter:hover{
+    max-width: 120px;
+}
+
+.parametersColumn.input .parameter{
+    border-radius: 0px 15px 15px 0px;
+    float:left;
+    left: 2px;
+    border-left: 0px;
+    text-align: right;
+}
+.parametersColumn.input .parameter>span{
+    float: right;
+}
+
+.parametersColumn.output .parameter{
+    border-radius: 15px 0 0 15px;
+    float: right;
+    right: 2px;
+    border-right: 0px;
+}
+
+
 .tab-content{
     border: 1px solid #ddd;
     border-top:0px;

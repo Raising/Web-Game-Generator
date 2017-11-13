@@ -11,14 +11,14 @@ if (basePath === ""){
         </div>
     )
 }
-  return (
+
+return (
     <li>
         <MenuNodeHead basePath = {basePath}/>
         <MenuNodeChildren basePath = {basePath}/>
     </li>
   );
 };
-
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -30,7 +30,6 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     return {};
 }
   
-
 //export default TreeMenu;
 export default connect(
    mapStateToProps,

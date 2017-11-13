@@ -15,7 +15,6 @@ const MenuNodeChildren = function({isSelected = false,basePath = "",children}){
     </ul>);
 };
 
-
 const getTreeElementFromPath = (tree,path) => {
     let result = tree;
     if (path === "") return result;
