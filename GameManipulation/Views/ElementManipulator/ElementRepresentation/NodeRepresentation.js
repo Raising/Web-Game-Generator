@@ -2,20 +2,25 @@ import React from "react";
 import {connect} from 'react-redux';
 import InputParameters from ".\\Molecules\\InputParameters.js";
 import OutputParameters from ".\\Molecules\\OutputParameters.js";
+import NodeBodyCreate from ".\\NodeBody\\NodeBodyCreate.js";
+import createReactClass from "create-react-class";
 
-const NodeRepresentation = function({element = {}}){
-    
+const NodeRepresentation = createReactClass({
+    render: function() {
+    let nodeBody = <NodeBodyCreate/>;
     return (
-        <div className="nodeSurface">
-            <InputParameters />
-            <OutputParameters />
-        </div> 
-    );
-};
+            <div className="nodeSurface">
+                <InputParameters />
+                <OutputParameters />
+                {nodeBody}
+            </div> 
+        );
+    }
+});
 
 const mapStateToProps = (state, ownProps) => {
     return {
-       element: state.selectedElement
+       
     };
 }
   

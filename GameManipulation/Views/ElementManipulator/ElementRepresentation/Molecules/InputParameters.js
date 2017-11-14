@@ -14,7 +14,7 @@ const InputParameters = function({element = {}}){
 
 const mapStateToProps = (state, ownProps) => {
     return {
-       element: state.selectedElement
+       element: state.getCurrentElement()
     };
 }
   

@@ -1,11 +1,13 @@
 import _ from "lodash";
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from 'redux'
+import {  createStore } from 'redux'
 import { Provider } from "react-redux";
 import createReactClass from 'create-react-class';
 import STRIFE from "..\\GameDescriptors\\STRIFE.js";
-import gameManipulationReducer from ".\\GameManipulationReducer.js";
+import StructureEnchancements from ".\\Enchancements\\index.js";
+import gameManipulationReducer from ".\\Reducers\\index.js";
+
 
 import GameManipulationApp from ".\\Views\\GameManipulationApp"
 

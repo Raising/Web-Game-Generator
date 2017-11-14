@@ -13,21 +13,21 @@ body{
 
 .parametersColumn{
     height: 99%;
-    width: 20px;
+    width: 10px;
     background-color: rgb(245, 245, 245);
     position: absolute;
-    border-radius: 10px;
+    border-radius: 5px;
     top: 0.5%;
 }
 
 .parametersColumn.input{
     box-shadow: inset 1px 1px 1px 1px #AAA;
-    left:5px;
+    left:3px;
 }
 
 .parametersColumn.output{
     box-shadow: inset -1px 1px 1px 1px #AAA;
-    right: 5px;
+    right: 3px;
 }
 
 .parametersColumn .parameter{
@@ -67,6 +67,17 @@ body{
     border-right: 0px;
 }
 
+.coreCreate{
+    background: #ffeebf;
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    top: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
 .tab-content{
     border: 1px solid #ddd;

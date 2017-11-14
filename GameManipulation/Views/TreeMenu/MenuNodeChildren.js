@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import TreeMenu from ".\\TreeMenu.js";
 
 const MenuNodeChildren = function({isSelected = false,basePath = "",children}){
-   
     let className = "nav nav-list nav-menu-list-style ";
     if (isSelected){
         className += " selected"; 
@@ -39,9 +38,10 @@ const mapStateToProps = (state, ownProps) => {
     }
 
     let splitedPathIndex = ownProps.basePath.split(".").length -1;
+
     return {
       children : childrenElements,
-      isSelected : (ownProps.basePath === "" || state.selectedMenuPath.indexOf(ownProps.basePath.split(".").pop()) === splitedPathIndex)
+      isSelected : (ownProps.basePath === "" || state.selectedElement.splitedPath.indexOf(ownProps.basePath.split(".").pop()) === splitedPathIndex)
     };
 };
 

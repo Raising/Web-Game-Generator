@@ -13,7 +13,7 @@ const TitleHeader = function({title = "Element with no Name"}){
 
 const mapStateToProps = (state, ownProps) => {
     return {
-       title: state.selectedElement.name ? state.selectedElement.name : state.selectedElement.description
+       title: state.getCurrentElement().name ? state.getCurrentElement().name : state.getCurrentElement().description
     };
 }
   
