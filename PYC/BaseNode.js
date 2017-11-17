@@ -48,11 +48,6 @@ PYC.Describe("BaseNode",{
       return await me.operation[operator].call(me,operands,inputParams);
     };
 
-    me.resolveCondition = async function ({operator = "",operands = []},inputParams){
-      var me = this;
-
-      return await me.condition[operator].call(me,operands,inputParams);
-    };
 
     me.resolveOperand = async function (operand,inputParams){
       var me = this;
@@ -72,7 +67,7 @@ PYC.Describe("BaseNode",{
       var me = this;
 
       for (let i = 0; i < paramsNames.length; i++){
-        let paramName = paramsNames[i];
+        let paramName = paramsNames[i].value;
         if (paramsArray[i] !== undefined){
           params[paramName] = paramsArray[i];
         }
@@ -88,7 +83,7 @@ PYC.Describe("BaseNode",{
       var paramsArray = [];
 
       for (let i = 0; i < paramsNames.length; i++){
-        let paramName = paramsNames[i];
+        let paramName = paramsNames[i].value;
         if (params[paramName] !== undefined){
           paramsArray.push(params[paramName]);
         }
@@ -99,7 +94,7 @@ PYC.Describe("BaseNode",{
       return paramsArray;
     };
 
-    me.condition = {
+    me.operation = {
       "==":    async function (operands,inputParams) {
         var me = this; 
         let firstOperand = await me.resolveOperand(operands[0],inputParams);
@@ -130,9 +125,8 @@ PYC.Describe("BaseNode",{
         let secondOperand = await me.resolveOperand(operands[1],inputParams);
         return firstOperand >= secondOperand;
       },
-    };
 
-    me.operation = {
+   
       "+":    async function (operands,inputParams) {
         var me = this;
         let firstOperand = await me.resolveOperand(operands[0],inputParams);
@@ -215,7 +209,7 @@ PYC.Describe("BaseNode",{
     me.selectOne = function (comparator) {
         var me = this;
         return async function (entityA, entityB){
-          let comparation =  await me.resolveCondition(comparator,{current:entityA,candidate:entityB} ) ; 
+          let comparation =  await me.resolveOperation(comparator,{current:entityA,candidate:entityB} ) ; 
           if (comparation){
             return entityA;
           }else{

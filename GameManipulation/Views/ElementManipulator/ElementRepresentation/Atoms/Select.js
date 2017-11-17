@@ -5,9 +5,16 @@ import createReactClass from "create-react-class";
 const Select = createReactClass({
     
     claculateOptions: function(){
-        return this.props.options.map( option => {
+        return this.props.options.map( (option,index) => {
+            if (option === undefined) option = "no Value" + index;
+            if (typeof option === "string"){
+                option = {
+                    name: option,
+                    value: option
+                };
+            }
             return (
-                <option key={option.name} value={option.value} >
+                <option key={option.name ||option.value} value={option.value} >
                     {option.name}
                 </option>
             )
@@ -36,7 +43,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         onChange: (e) => {
             return dispatch({
-                type: "CHANGE_ELEMENT_PROPERTY",
+                type: "CHANGE_SELECTED_ELEMENT_PROPERTY",
                 payload: {
                     newValue: e.currentTarget.value,
                     propertyName: ownProps.propertyName

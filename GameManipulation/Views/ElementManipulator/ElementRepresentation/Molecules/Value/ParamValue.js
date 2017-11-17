@@ -2,14 +2,24 @@ import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
-const TextInput = createReactClass({
+import TextInput from "..\\..\\Atoms\\TextInput.js";
+import Select from "..\\..\\Atoms\\Select.js";
+
+const ParamValue = createReactClass({
+
     render: function() {
         return (
-            <div className={this.props.className}>
-                {this.props.name !== undefined ? (<label>{this.props.name} </label>) : ""}
-                <input onChange={this.props.onChange} value={this.props.currentValue} placeholder="InsertText"/> 
+            <div>
+                <Select name="Input Param" resource="inputNames" propertyName={this.props.propertyName + ".name"} />
+                <TextInput  propertyName={this.props.propertyName + ".attribute"}/> 
             </div>
         );
+
+        if (typeof this.props.currentValue === "object"){
+            return this.composedValue();
+        }else{
+            return this.rawValue();
+        }
     }
 });
 
@@ -18,8 +28,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         currentValue: modelValue !== undefined ? modelValue : ""
     };
-};
-
+}
+  
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         onChange: (e) => {
@@ -32,9 +42,9 @@ const mapDispatchToProps = (dispatch,ownProps) => {
             })
         }
     }
-};
-
+}
+  
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(TextInput);
+)(ParamValue);

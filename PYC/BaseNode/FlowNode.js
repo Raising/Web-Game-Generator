@@ -38,7 +38,7 @@ PYC.Describe("FlowNode",{
         var me = this;
         params = [];
         let infiniteLoopLock = 0;
-        while (await me.resolveCondition(me.control.condition,inputParams) || infiniteLoopLock > 1000){ // jshint ignore:line
+        while (await me.resolveOperation(me.control.condition,inputParams) || infiniteLoopLock > 1000){ // jshint ignore:line
           let nodeExecution = await me.singleExecution(inputParams);
           params.push( nodeExecution); 
           infiniteLoopLock++;

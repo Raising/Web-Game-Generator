@@ -1,15 +1,15 @@
-const currentElement = {
-
- getCurrentElement : function() { 
+export default {
+    _lastCurrentElement : {name: "No ElementSelected"},  
+    _lastElementPath : "",  
+    getCurrentElement : function() { 
+    if (this.selectedElement.path !== this._lastElementPath){
+        this._lastElementPath = this.selectedElement.path;
         if (this.selectedElement.path === ""){
-            return {name: "No ElementSelected"};
-        } 
-        let selectedElement = this.gameModel;    
-        for (let subPathId of this.selectedElement.splitedPath){
-            selectedElement = selectedElement[subPathId];
+            this._lastCurrentElement = {name: "No ElementSelected"};
+        }else{
+            this._lastCurrentElement = this.gameModel.getPropertyDot(this.selectedElement.path);   
         }
-        return selectedElement;
+    }    
+    return this._lastCurrentElement;
     }
-}
-
-export default currentElement;
+};

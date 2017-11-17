@@ -4,7 +4,7 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
          nodeType:"Selector",
          name:"selectChampionFromHand",
          description:"select Champion From a Player Hand", 
-         inputNames:["player"], 
+         inputNames:[{name:"player",value:"player"}], 
         whoSelect:{type:"param",name:"player"},
         options:[
             {scope:{type:"param",name:"player",attribute:"hand.children"},restrictions:[]}

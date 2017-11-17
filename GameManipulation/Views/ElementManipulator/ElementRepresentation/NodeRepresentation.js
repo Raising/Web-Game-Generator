@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
-import InputParameters from ".\\Molecules\\InputParameters.js";
-import OutputParameters from ".\\Molecules\\OutputParameters.js";
+import SideParameters from ".\\Molecules\\SideParameters.js";
 import NodeBodyCreate from ".\\NodeBody\\NodeBodyCreate.js";
 import createReactClass from "create-react-class";
 
@@ -10,8 +9,8 @@ const NodeRepresentation = createReactClass({
     let nodeBody = <NodeBodyCreate/>;
     return (
             <div className="nodeSurface">
-                <InputParameters />
-                <OutputParameters />
+                <SideParameters style="input" propertyName="inputNames"/>
+                <SideParameters style="output" propertyName="outputNames" />
                 {nodeBody}
             </div> 
         );

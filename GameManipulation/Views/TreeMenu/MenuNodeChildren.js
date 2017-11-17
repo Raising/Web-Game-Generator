@@ -36,12 +36,12 @@ const mapStateToProps = (state, ownProps) => {
             );
         });
     }
-
+    let splitedPath = state.selectedElement.path.split(".");
     let splitedPathIndex = ownProps.basePath.split(".").length -1;
 
     return {
       children : childrenElements,
-      isSelected : (ownProps.basePath === "" || state.selectedElement.splitedPath.indexOf(ownProps.basePath.split(".").pop()) === splitedPathIndex)
+      isSelected : (ownProps.basePath === "" || splitedPath.indexOf(ownProps.basePath.split(".").pop()) === splitedPathIndex)
     };
 };
 

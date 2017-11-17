@@ -28,11 +28,11 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         inputNames:[],
         outputNames:[],   
         nodes:[
-            {nodeType:"Primitive", outputNames:["string:roundCounter"], value: "ROUND_COUNTER"},
-            {nodeType:"Primitive", outputNames:["string:turnCounter"], value: "TURN_COUNTER"},
-            {nodeType:"Primitive", outputNames:["value:cero"], value: 0},
-            {id:"smartCounter",nodeType:"Create",inputNames:["string:roundCounter","value:cero"],outputNames:["roundCounter"]},
-            {id:"smartCounter",nodeType:"Create",inputNames:["string:turnCounter","value:cero"],outputNames:["turnCounter"]},
+            {nodeType:"Primitive", outputNames:[{value:"string:roundCounter",name:"string:roundCounter"}], value: "ROUND_COUNTER"},
+            {nodeType:"Primitive", outputNames:[{value:"string:turnCounter",name:"string:turnCounter"}], value: "TURN_COUNTER"},
+            {nodeType:"Primitive", outputNames:[{value:"value:cero",name:"value:cero"}], value: 0},
+            {id:"smartCounter",nodeType:"Create",inputNames:[{value:"string:roundCounter",name:"string:roundCounter"},{value:"value:cero",name:"value:cero"}],outputNames:[{value:"roundCounter",name:"roundCounter"}]},
+            {id:"smartCounter",nodeType:"Create",inputNames:[{value:"string:turnCounter",name:"string:turnCounter"},{value:"value:cero",name:"value:cero"}],outputNames:[{value:"turnCounter",name:"turnCounter"}]},
             {id:"initPlayersDecks", control:  {type:"simultaneous", nodeSpecificInfo:{type:"game",attribute:"players"}}},
             {id:"initLocationsDeck"},
             {id:"initPlayersScrore"},
@@ -73,10 +73,10 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
 
     selectChampion:{
         nodeType:"Flow",
-        name:"selectChampion",description:"selectChampion", inputNames:["player"], nodes:[
-        {id:"selectChampionFromHand",nodeType:"Selector", inputNames:["player"],outputNames:["selectedChampion"]},
-        {nodeType:"Primitive",inputNames:["player"], value: {type:"param",name:"player",attribute:"battleArea"}, outputNames:["battleArea"]},
-        {id:"moveEntityTo",nodeType:"Modify", inputNames:["selectedChampion","battleArea"]},
+        name:"selectChampion",description:"selectChampion", inputNames:[{value:"player",name:"player"}], nodes:[
+        {id:"selectChampionFromHand",nodeType:"Selector", inputNames:[{value:"player",name:"player"}],outputNames:[{value:"selectedChampion",name:"selectedChampion"}]},
+        {nodeType:"Primitive",inputNames:[{value:"player",name:"player"}], value: {type:"param",name:"player",attribute:"battleArea"}, outputNames:[{value:"battleArea",name:"battleArea"}]},
+        {id:"moveEntityTo",nodeType:"Modify", inputNames:[{value:"selectedChampion",name:"selectedChampion"},{value:"battleArea",name:"battleArea"}]},
     ]},
     battlePhase:{
         nodeType:"Flow",
@@ -86,10 +86,12 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         name:"legacyPhase",description:"legacyPhase",nodes:[]},
     combatPhase:{
         nodeType:"Flow",
-        name:"combatPhase",description:"combatPhase",nodes:[
+        name:"combatPhase",
+        description:"combatPhase",
+        nodes:[
         {nodeType:"Primitive", value: {type:"reduce", group :{type:"game",attribute:"players"}, 
             comparator:{ operator:"<", operands:[ {type:"param",name:"current",attribute:"battleArea.first.power"}, {type:"param",name:"candidate",attribute:"battleArea.first.power"}]}
-        }, outputNames:["winnerPlayer"]},
+        }, outputNames:[{value:"winnerPlayer",name:"winnerPlayer"}]},
             ///    
             /// How to compare players information?
             ///
@@ -103,10 +105,10 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
 
     cleanBattleArea:{
         nodeType:"Flow",
-        name:"cleanBattleArea",description:"clean Battle area ",inputNames:["player"],nodes:[
-        {nodeType:"Primitive",inputNames:["player"], value: {type:"param",name:"player",attribute:"legacyArea"}, outputNames:["legacyArea"]},
-        {nodeType:"Primitive",inputNames:["player"], value: {type:"param",name:"player",attribute:"battleArea.first"}, outputNames:["battleChampion"]},
-        {id:"moveEntityTo",nodeType:"Modify", inputNames:["battleChampion","legacyArea"]},
+        name:"cleanBattleArea",description:"clean Battle area ",inputNames:[{value:"player",name:"player"}],nodes:[
+        {nodeType:"Primitive",inputNames:[{value:"player",name:"player"}], value: {type:"param",name:"player",attribute:"legacyArea"}, outputNames:[{value:"legacyArea",name:"legacyArea"}]},
+        {nodeType:"Primitive",inputNames:[{value:"player",name:"player"}], value: {type:"param",name:"player",attribute:"battleArea.first"}, outputNames:[{value:"battleChampion",name:"battleChampion"}]},
+        {id:"moveEntityTo",nodeType:"Modify", inputNames:[{value:"battleChampion",name:"battleChampion"},{value:"legacyArea",name:"legacyArea"}]},
 
     ]},
 
@@ -114,25 +116,25 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
 
     initPlayersDecks:{
         nodeType:"Flow",
-        name:"initPlayersDecks",description:"initPlayersDecks", inputNames:["player"],nodes:[
-        {nodeType:"Primitive", outputNames:["string:hand"], value: "hand"},
-        {id:"createPlayerHand", inputNames:["player"],outputNames:["playerhand"]},
-        {id:"addProperty",nodeType:"Modify", inputNames:["player","string:hand","playerhand"]},
-        
-        {nodeType:"Primitive", outputNames:["string:battleArea"], value: "battleArea"},
-        {id:"playerBattleArea",nodeType:"Create", inputNames:["player"],outputNames:["playerBattleArea"]},
-        {id:"addProperty",nodeType:"Modify", inputNames:["player","string:battleArea","playerBattleArea"]},
+        name:"initPlayersDecks",description:"initPlayersDecks", inputNames:[{value:"player",name:"player"}],nodes:[
+            {nodeType:"Primitive", outputNames:[{value:"string:hand",name:"string:hand"}], value: "hand"},
+            {id:"createPlayerHand", inputNames:[{value:"player",name:"player"}],outputNames:[{value:"playerhand",name:"playerhand"}]},
+            {id:"addProperty",nodeType:"Modify", inputNames:[{value:"player",name:"player"},{value:"string:hand",name:"string:hand"},{value:"playerhand",name:"playerhand"}]},
+            
+            {nodeType:"Primitive", outputNames:[{name:"string:battleArea",value:"string:battleArea"}], value: "battleArea"},
+            {id:"playerBattleArea",nodeType:"Create", inputNames:[{value:"player",name:"player"}],outputNames:[{name:"playerBattleArea",value:"playerBattleArea"}]},
+            {id:"addProperty",nodeType:"Modify", inputNames:[{value:"player",name:"player"},{name:"string:battleArea",value:"string:battleArea"},{name:"playerBattleArea",value:"playerBattleArea"}]},
 
-        {nodeType:"Primitive", outputNames:["string:legacyArea"], value: "legacyArea"},
-        {id:"playerLegacyArea",nodeType:"Create", inputNames:["player"],outputNames:["playerLegacyArea"]},
-        {id:"addProperty",nodeType:"Modify", inputNames:["player","string:legacyArea","playerLegacyArea"]},
+            {nodeType:"Primitive", outputNames:[{name:"string:legacyArea",value:"string:legacyArea"}], value: "legacyArea"},
+            {id:"playerLegacyArea",nodeType:"Create", inputNames:[{value:"player",name:"player"}],outputNames:[{name:"playerLegacyArea",value:"playerLegacyArea"}]},
+            {id:"addProperty",nodeType:"Modify", inputNames:[{value:"player",name:"player"},{name:"string:legacyArea",value:"string:legacyArea"},{name:"playerLegacyArea",value:"playerLegacyArea"}]},
     ]},
     
     initLocationsDeck:{
         nodeType:"Flow",
         name:"initLocationsDeck",description:"initLocationsDeck",nodes:[
-        {nodeType:"Primitive", outputNames:["neutralPlayer"], value: "neutralPlayer"},
-        {id:"createLocationDeck", inputNames:["neutralPlayer"]},
+            {nodeType:"Primitive", outputNames:[{value:"neutralPlayer",name:"neutralPlayer"}], value: "neutralPlayer"},
+            {id:"createLocationDeck", inputNames:[{value:"neutralPlayer",name:"neutralPlayer"}]},
     ]},
 
     initPlayersScrore:{
@@ -143,20 +145,20 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         nodeType:"Flow",
         name:"createPlayerHand",
         description:"Create Player hand and its cards",
-        inputNames:["playerOwner"],
-        outputNames:["playerHand"],
+        inputNames:[{name:"playerOwner",value:"playerOwner"}],
+        outputNames:[{name:"playerHand",value:"playerHand"}],
         nodes:[
-            {id:"playerHand",nodeType:"Create",inputNames:["playerOwner"],outputNames:["playerHand"]},
-            {id:"champion1",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["monk"]},
-            {id:"champion2",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["necromancer"]},
-            {id:"champion3",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["assasin"]},
-            {id:"champion4",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["wizard"]},
-            {id:"champion5",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["paladin"]},
-            {id:"champion6",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["ranger"]},
-            {id:"champion7",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["druid"]},
-            {id:"champion8",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["warrior"]},
-            {id:"champion9",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["knight"]},
-            {id:"champion10",nodeType:"Create",inputNames:["playerOwner","playerHand"],outputNames:["barbarian"]},
+            {id:"playerHand",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"}],outputNames:[{name:"playerHand",value:"playerHand"}]},
+            {id:"champion1",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"monk",value:"monk"}]},
+            {id:"champion2",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"necromancer",value:"necromancer"}]},
+            {id:"champion3",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"assasin",value:"assasin"}]},
+            {id:"champion4",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"wizard",value:"wizard"}]},
+            {id:"champion5",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"paladin",value:"paladin"}]},
+            {id:"champion6",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"ranger",value:"ranger"}]},
+            {id:"champion7",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"druid",value:"druid"}]},
+            {id:"champion8",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"warrior",value:"warrior"}]},
+            {id:"champion9",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"knight",value:"knight"}]},
+            {id:"champion10",nodeType:"Create",inputNames:[{name:"playerOwner",value:"playerOwner"},{name:"playerHand",value:"playerHand"}],outputNames:[{name:"barbarian",value:"barbarian"}]},
         ]
     },
 
@@ -164,20 +166,20 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         nodeType:"Flow",
         name:"createLocationDeck",
         description:"Create the location Deck",
-        inputNames:["neutralPlayer"],
-        outputNames:["locationDeck"],
+        inputNames:[{name:"neutralPlayer",value:"neutralPlayer"}],
+        outputNames:[{name:"locationDeck",value:"locationDeck"}],
         nodes:[
-            {id:"locationDeck",nodeType:"Create",inputNames:["neutralPlayer"],outputNames:["locationDeck"]},
-            {id:"location1",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location1"]},
-            {id:"location2",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location2"]},
-            {id:"location3",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location3"]},
-            {id:"location4",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location4"]},
-            {id:"location5",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location5"]},
-            {id:"location6",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location6"]},
-            {id:"location7",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location7"]},
-            {id:"location8",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location8"]},
-            {id:"location9",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location9"]},
-            {id:"location10",nodeType:"Create",inputNames:["neutralPlayer","locationDeck"],outputNames:["location10"]},
+            {id:"locationDeck",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"}],outputNames:[{name:"locationDeck",value:"locationDeck"}]},
+            {id:"location1",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location1",value:"location1"}]},
+            {id:"location2",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location2",value:"location2"}]},
+            {id:"location3",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location3",value:"location3"}]},
+            {id:"location4",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location4",value:"location4"}]},
+            {id:"location5",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location5",value:"location5"}]},
+            {id:"location6",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location6",value:"location6"}]},
+            {id:"location7",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location7",value:"location7"}]},
+            {id:"location8",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location8",value:"location8"}]},
+            {id:"location9",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location9",value:"location9"}]},
+            {id:"location10",nodeType:"Create",inputNames:[{name:"neutralPlayer",value:"neutralPlayer"},{name:"locationDeck",value:"locationDeck"}],outputNames:[{name:"location10",value:"location10"}]},
         ]
     },
 
