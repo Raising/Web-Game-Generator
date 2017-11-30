@@ -6,18 +6,20 @@ const Select = createReactClass({
     
     claculateOptions: function(){
         return this.props.options.map( (option,index) => {
-            if (option === undefined) option = "no Value" + index;
-            if (typeof option === "string"){
-                option = {
-                    name: option,
-                    value: option
-                };
-            }
-            return (
-                <option key={option.name ||option.value} value={option.value} >
-                    {option.name}
-                </option>
-            )
+          if (option === undefined) {
+              option = "no Value" + index;
+          }
+          if (typeof option === "string"){
+            option = {
+              name: option,
+              key: option
+              };
+          }
+          return (
+            <option key={option.key ||option.name} value={option.key} >
+              {option.name}
+            </option>
+          )
         });
     },
     render: function() {

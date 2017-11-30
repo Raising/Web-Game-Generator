@@ -6,7 +6,7 @@
  *
  * Copyright 2017, Ignacio Medina Castillo 
  *
- * Released on: November 16, 2017
+ * Released on: November 30, 2017
 */
 import PYC from '..\\..\\module\\PrototypeClass';
 import React, { Component } from "react";
@@ -79,7 +79,7 @@ PYC.Describe("BaseNode",{
       var me = this;
 
       for (let i = 0; i < paramsNames.length; i++){
-        let paramName = paramsNames[i].value;
+        let paramName = paramsNames[i].key;
         if (paramsArray[i] !== undefined){
           params[paramName] = paramsArray[i];
         }
@@ -95,7 +95,7 @@ PYC.Describe("BaseNode",{
       var paramsArray = [];
 
       for (let i = 0; i < paramsNames.length; i++){
-        let paramName = paramsNames[i].value;
+        let paramName = paramsNames[i].key;
         if (params[paramName] !== undefined){
           paramsArray.push(params[paramName]);
         }

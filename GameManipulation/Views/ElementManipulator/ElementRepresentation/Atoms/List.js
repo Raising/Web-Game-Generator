@@ -26,11 +26,10 @@ const mapStateToProps = (state, ownProps) => {
         elements = [];
     } 
     if (ownProps.attributeName !== undefined){
-        elements = elements.map( element => element[ownProps.attributeName]);
+        elements = elements.map( element => element.getProperty(ownProps.attributeName));
     }
     return {
       elements : (state.getCurrentElement().getProperty(ownProps.propertyName) || [] )
-      
     };
 }
   
@@ -40,7 +39,8 @@ const mapDispatchToProps = (dispatch,ownProps) => {
             return dispatch({
                 type: "ADD_CHILD_TO_SELECTED_ELEMENT_PROPERTY",
                 payload: {
-                    newValue: ownProps.ListElement.defaultValue || undefined,
+                    keyAttribute: "key",
+                    newValue: ownProps.ListElement.defaultValue,
                     propertyName: ownProps.propertyName
                 }
             })

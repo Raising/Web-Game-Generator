@@ -67,7 +67,7 @@ PYC.Describe("BaseNode",{
       var me = this;
 
       for (let i = 0; i < paramsNames.length; i++){
-        let paramName = paramsNames[i].value;
+        let paramName = paramsNames[i].key;
         if (paramsArray[i] !== undefined){
           params[paramName] = paramsArray[i];
         }
@@ -83,7 +83,7 @@ PYC.Describe("BaseNode",{
       var paramsArray = [];
 
       for (let i = 0; i < paramsNames.length; i++){
-        let paramName = paramsNames[i].value;
+        let paramName = paramsNames[i].key;
         if (params[paramName] !== undefined){
           paramsArray.push(params[paramName]);
         }

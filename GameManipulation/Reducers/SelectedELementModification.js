@@ -5,8 +5,22 @@ let selectedElementModification = {
         state.setPropertyDot(propertyName, newValue);
 		return state;
     },
-    ADD_CHILD_TO_SELECTED_ELEMENT_PROPERTY: (state,{newValue ,propertyName = ""}) => {
+    ADD_CHILD_TO_SELECTED_ELEMENT_PROPERTY: (state,{keyAttribute = "", newValue ,propertyName = ""}) => {
         let list = state.getPropertyDot(propertyName) || [];
+        newValue = Object.assign({},newValue);
+
+        if (keyAttribute !== ""){
+          let baseKey = "elemenetKey_";
+          let currentIndex = list.length;
+          let newKey = baseKey + currentIndex;
+          let currentKeys = list.map( e => e.getPropertyDot(keyAttribute));
+          
+          while (currentKeys.indexOf(newKey) !== -1){
+            currentIndex++;
+            newKey = baseKey + currentIndex;
+          }
+          newValue.setPropertyDot(keyAttribute,newKey);
+        }
         state.setPropertyDot(propertyName,[...list,newValue]);
         return state;
     },
