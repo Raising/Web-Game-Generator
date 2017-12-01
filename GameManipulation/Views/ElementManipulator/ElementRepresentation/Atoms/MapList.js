@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     return {
         addElement: (e) => {
             return dispatch({
-                type: "ADD_CHILDMAP_TO_SELECTED_ELEMENT_PROPERTY",
+                type: "ADD_MAPPED_CHILD_TO_SELECTED_ELEMENT_PROPERTY",
                 payload: {
                     elementKeyProperty: "_newChildKey",
                     newValue: undefined,
