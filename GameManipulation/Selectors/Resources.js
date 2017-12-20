@@ -5,7 +5,9 @@ const resources ={
         {  name:"Selector",   value:"Selector"},
         {  name:"Modify",     value:"Modify"}
     ],
-
+    propertyTypes:[
+        {  name:"param",     value:"param"},
+    ],
     inputNames: function(){
         return this.getCurrentElement().inputNames;
     }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
 import TextInput from "..\\..\\Atoms\\TextInput.js";
+import Select from "..\\..\\Atoms\\Select.js";
 import ParamValue from ".\\ParamValue.js";
 
 const PolimorfValue = createReactClass({  
@@ -11,14 +12,23 @@ const PolimorfValue = createReactClass({
     },
 
     composedValue: function(){
-        switch (this.props.currentValue.type) {
-            case "param":
-                return <ParamValue propertyName={this.props.propertyName} />
-            break;
+      if (this.props.currentValue.type !== undefined)  {
+        return (
+            <div>
+              <Select name="Type" propertyName={this.props.propertyName + ".type"} resource="propertyTypes"/>
+              <ParamValue propertyName={this.props.propertyName} />
+            </div>
+        );
+      }
+      // switch (this.props.currentValue.type) {
+          
+      //       case "param":
+      //           return <ParamValue propertyName={this.props.propertyName} />
+      //       break;
         
-            default:
-            break;
-        }
+      //       default:
+      //       break;
+      //   }
         return(
             <div/>
         )

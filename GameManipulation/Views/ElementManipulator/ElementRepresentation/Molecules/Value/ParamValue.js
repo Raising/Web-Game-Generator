@@ -11,7 +11,7 @@ const ParamValue = createReactClass({
         return (
             <div>
                 <Select name="Input Param" resource="inputNames" propertyName={this.props.propertyName + ".name"} />
-                <TextInput  propertyName={this.props.propertyName + ".attribute"}/> 
+                
             </div>
         );
 
