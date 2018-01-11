@@ -18,7 +18,7 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         inputNames:[],
         outputNames:[],
         nodes:[
-            {id:"playRound", control:  {type:"while", condition:{ operator:"<", operands:[ {type:"entityProperty",entity:"ROUND_COUNTER",attribute:"value"}, 2]}}},                  
+            {id:"playRound", control:  {type:"while", condition:{ operator:"<", operands:[ {type:"entityByName",name:"ROUND_COUNTER",attribute:"value"}, 2]}}},                  
         ]   
     },
     initGame:{
@@ -51,7 +51,7 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         nodes:[
             {id:"increaseRoundCounter",nodeType:"Modify"},
             {id:"resetTurnCounter",nodeType:"Modify"},
-            {id:"playTurn", control:  {type:"while", condition:{ operator:"<", operands:[ {type:"entityProperty",entity:"TURN_COUNTER",attribute:"value"}, 3]}} },
+            {id:"playTurn", control:  {type:"while", condition:{ operator:"<", operands:[ {type:"entityByName",name:"TURN_COUNTER",attribute:"value"}, 3]}} },
         ]
     },
 

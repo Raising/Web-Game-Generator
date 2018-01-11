@@ -4,9 +4,9 @@
  *
  * 
  *
- * Copyright 2017, Ignacio Medina Castillo 
+ * Copyright 2018, Ignacio Medina Castillo 
  *
- * Released on: November 30, 2017
+ * Released on: January 11, 2018
 */
 import PYC from '..\\..\\module\\PrototypeClass';
 import React, { Component } from "react";
@@ -178,9 +178,15 @@ PYC.Describe("BaseNode",{
         var me = this; 
         return me.game.getEntityByName(entity)[attribute]; 
       },
-      entityByName: async function ({name = ""}) {
+      entityByName: async function ({name = "", attribute = ""}) {
        var me = this; 
-       return me.game.getEntityByName(name); 
+       let attributeChain = attribute !== "" ? attribute.split(".") : [];
+       var currentValue = me.game.getEntityByName(name);
+       for (var indexAttr in attributeChain){
+         currentValue = currentValue[attributeChain[indexAttr]];
+       }
+       return currentValue; 
+       
       },
       param: async function ({name = "", attribute = ""},params) {
         var me = this;
@@ -191,12 +197,15 @@ PYC.Describe("BaseNode",{
         }
         return currentValue;
       },
+      raw: async function ({value = ""},params) {
+        return value;
+      },
       
       list: async function({list = ""},params){
         var me = this;
         let result = [];
         for (var index in list){
-          result.push(await me.resolveOperand(list[index],params));  // jshint ignore:line
+          result.push(await me.resolveOperand(list[index],params));
         }
         return result;
       },

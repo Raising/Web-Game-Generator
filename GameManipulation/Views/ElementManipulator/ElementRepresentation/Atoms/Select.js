@@ -6,32 +6,49 @@ const Select = createReactClass({
     
     claculateOptions: function(){
         return this.props.options.map( (option,index) => {
-          if (option === undefined) {
-              option = "no Value" + index;
-          }
-          if (typeof option === "string"){
-            option = {
-              name: option,
-              key: option
-              };
-          }
+          option = this.preProcessOptionObject(option,index);
+
           return (
-            <option key={option.key ||option.name} value={option.key} >
+            <option  value={option.key || option.value} key={option.key || option.value }  >
               {option.name}
             </option>
           )
         });
     },
     render: function() {
-        return (
-            <div>
-                <label>{this.props.name}: </label>
-                <select value={this.props.currentValue} onChange ={this.props.onChange}>
-                    {this.claculateOptions()}
-                </select> 
-            </div>
-        );
-    }
+      return (
+        <div className={this.props.className} >
+            <label>{this.props.name}: </label>
+            <select value={this.props.currentValue} onChange ={this.props.onChange}>
+              {this.claculateOptions()}
+            </select>
+        </div>
+      );
+    },
+
+    preProcessOptionObject : function(option,index){
+      option = this.parseUndefinedOption(option,index);
+      option = this.parsePlainStringToOptionObject(option);
+      
+      return option;
+    },
+
+    parsePlainStringToOptionObject : function(option){
+      if (typeof option === "string"){
+        option = {
+          name: option,
+          key: option
+          };
+      }
+      return option;
+    },
+
+    parseUndefinedOption : function(option,index){
+      if (option === undefined) {
+        option = "no Value" + index;
+      }
+      return option;
+    },
 });
 
 const mapStateToProps = (state, ownProps) => {
@@ -43,7 +60,7 @@ const mapStateToProps = (state, ownProps) => {
   
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
-        onChange: (e) => {
+        onChange: ownProps.onChange !== undefined ? ownProps.onChange : (e) => {
             return dispatch({
                 type: "CHANGE_SELECTED_ELEMENT_PROPERTY",
                 payload: {

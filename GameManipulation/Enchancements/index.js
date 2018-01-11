@@ -38,12 +38,16 @@ Object.defineProperty(Object.prototype, 'setProperty',{
                 let property = this;
                 let tailPropertyValue = splitedProperty.pop();
                 for (let subName of splitedProperty){
-                    if (property[subName].hasOwnProperty("length")){
-                        property[subName] = [...property[subName]];
+                  if (typeof property[subName] === "object"){
+                    if (property[subName] !== undefined &&  property[subName].hasOwnProperty("length")){
+                      property[subName] = [...property[subName]];
                     }else{
-                        property[subName] = Object.assign({},property[subName]);
+                      property[subName] = Object.assign({},property[subName]);
                     }
-                    property = property[subName];
+                  }else{
+                    property[subName] = {};
+                  }
+                  property = property[subName];
                 }
                 property[tailPropertyValue] = value;
             }

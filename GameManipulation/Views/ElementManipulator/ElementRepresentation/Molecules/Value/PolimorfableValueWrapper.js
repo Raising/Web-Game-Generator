@@ -2,28 +2,27 @@ import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
-import PolimorfValue from ".\\PolimorfValue.js";
+import PolimorfableValue from ".\\PolimorfableValue.js";
 import List from "..\\..\\Atoms\\List.js";
 
-const PolimorfValueWrapper = createReactClass({
+const PolimorfableValueWrapper = createReactClass({
     hasOperations: function(){
         return this.props.currentValue.baseValue !== undefined;
     },
 
     valueWithOperations: function(){
         return (
-            <div className="pull-right">
-                <PolimorfValue propertyName={this.props.propertyName + ".baseValue"}/>
+            <div className="" >
+                <PolimorfableValue propertyName={this.props.propertyName + ".baseValue"}/>
             </div>
         );
-       // <List propertyName={this.props.operations + ".operations"}  />
+        // <List propertyName={this.props.operations + ".operations"}  />
     },
 
+    /// This case is to support handMade json that place a value without the baseValue wrapper  
     valueAlone: function(){
         return (
-            <div className="pull-right">
-                <PolimorfValue propertyName={this.props.propertyName}/>
-            </div>
+            <PolimorfableValue propertyName={this.props.propertyName}/>
         );
     },
     
@@ -60,4 +59,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(PolimorfValueWrapper);
+)(PolimorfableValueWrapper);

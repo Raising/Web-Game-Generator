@@ -17,7 +17,7 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
     console.log(action);
-    window.actionHistory = window.actionHistory ||[];
+    window.actionHistory = window.actionHistory || [];
     window.actionHistory.push(action);
     state = Object.assign(Object.create(selectors),state);
 

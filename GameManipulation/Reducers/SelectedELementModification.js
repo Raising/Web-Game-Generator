@@ -2,7 +2,7 @@ import baseReducer from ".\\BaseReducer.js";
 
 let selectedElementModification = {
 	  CHANGE_SELECTED_ELEMENT_PROPERTY :(state, {newValue ,propertyName = ""}) => {
-        state.setPropertyDot(propertyName, newValue);
+        state.setPropertyDot(propertyName, typeof newValue === "function" ? newValue(state) : newValue);
 		return state;
     },
     ADD_CHILD_TO_SELECTED_ELEMENT_PROPERTY: (state,{keyAttribute = "", newValue ,propertyName = ""}) => {

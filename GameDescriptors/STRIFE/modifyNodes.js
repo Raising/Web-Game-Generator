@@ -7,7 +7,7 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         entity: {type:"entityByName",name:"ROUND_COUNTER"},
         attribute: "value",
         newValue: {
-            baseValue: {type:"entityProperty",entity:"ROUND_COUNTER",attribute:"value"},
+            baseValue: {type:"entityByName",name:"ROUND_COUNTER",attribute:"value"},
             operations: [
                 {operator:"+",operands:[1]}
             ]
@@ -20,7 +20,7 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         entity: {type:"entityByName",name:"TURN_COUNTER"},
         attribute: "value",
         newValue: {
-            baseValue: {type:"entityProperty",entity:"TURN_COUNTER",attribute:"value"},
+            baseValue: {type:"entityByName",name:"TURN_COUNTER",attribute:"value"},
             operations: [
                 {operator:"+",operands:[1]}
             ]

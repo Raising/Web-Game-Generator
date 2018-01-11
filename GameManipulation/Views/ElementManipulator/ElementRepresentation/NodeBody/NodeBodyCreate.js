@@ -5,18 +5,18 @@ import Select from "..\\Atoms\\Select.js";
 import TextInput from "..\\Atoms\\TextInput.js";
 import List from "..\\Atoms\\List.js";
 import MapList from "..\\Atoms\\MapList.js";
-import PolimorfValueWrapper from "..\\Molecules\\Value\\PolimorfValueWrapper.js";
+import PolimorfableValueWrapper from "..\\Molecules\\Value\\PolimorfableValueWrapper.js";
 
 const NodeBodyCreate = createReactClass({
     render: function() {
         return (
-            <div className="coreCreate">
+            <div className="clearfix coreCreate">
                 <Select name="Node Type" propertyName="nodeType" resource="nodeTypes"/>
                 <TextInput name = "Name" propertyName="name" maxSize="30" />
                 <TextInput name = "Description" propertyName="description" maxSize="100" />
                 <List name = "InputNames" propertyName="inputNames" attributeName="name" ListElement =   {{type:TextInput,defaultValue:{name:undefined,key:undefined}}} />
                 <List name = "OutputNames" propertyName="outputNames" attributeName="name" ListElement=   {{type:TextInput,defaultValue:{name:undefined,key:undefined}}} />
-                <MapList name = "Attributes" propertyName="attributes" ListElement =   {{type:PolimorfValueWrapper}} />
+                <MapList name = "Attributes" propertyName="attributes" ListElement =   {{type:PolimorfableValueWrapper}} />
             </div> 
         );
     }

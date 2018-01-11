@@ -33,17 +33,17 @@ store.dispatch({
     }
   });
 
- store.dispatch({
-    type: "SELECT_MENU_ELEMENT",
-    payload: {
-      "elementId": "nodes.champion3"
-    }
-  });
-  store.dispatch({
-    type: "CHANGE_SELECTED_ELEMENT_PROPERTY",
-    payload: {
-      newValue: "Flow",
-      propertyName: "nodeType",
-      elementId: "gameModel.nodes.champion3"
-    }
-  });
+store.dispatch({
+  type: "SELECT_MENU_ELEMENT",
+  payload: {
+    "elementId": "nodes.champion3"
+  }
+});
+// store.dispatch({
+//   type: "CHANGE_SELECTED_ELEMENT_PROPERTY",
+//   payload: {
+//     newValue: "Flow",
+//     propertyName: "nodeType",
+//     elementId: "gameModel.nodes.champion3"
+//   }
+// });
