@@ -2,10 +2,11 @@ import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
-import PolimorfableValue from ".\\PolimorfableValue.js";
-import List from "..\\..\\Atoms\\List.js";
+import PolimorfableOperand from ".\\PolimorfableOperand.js";
+import List from "..\\..\\..\\Atoms\\List.js";
+import OperationWrapper from "..\\..\\..\\Molecules\\Nodes\\Operations\\OperationWrapper.js";
 
-const PolimorfableValueWrapper = createReactClass({
+const OperandWrapper = createReactClass({
     hasOperations: function(){
         return this.props.currentValue.baseValue !== undefined;
     },
@@ -13,16 +14,16 @@ const PolimorfableValueWrapper = createReactClass({
     valueWithOperations: function(){
         return (
             <div className="" >
-                <PolimorfableValue propertyName={this.props.propertyName + ".baseValue"}/>
+                <PolimorfableOperand propertyName={this.props.propertyName + ".baseValue"}/>
+                <List propertyName={this.props.operations + ".operations"} ListElement = {{type:OperationWrapper}} />
             </div>
         );
-        // <List propertyName={this.props.operations + ".operations"}  />
     },
 
     /// This case is to support handMade json that place a value without the baseValue wrapper  
     valueAlone: function(){
         return (
-            <PolimorfableValue propertyName={this.props.propertyName}/>
+            <PolimorfableOperand propertyName={this.props.propertyName}/>
         );
     },
     
@@ -59,4 +60,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(PolimorfableValueWrapper);
+)(OperandWrapper);

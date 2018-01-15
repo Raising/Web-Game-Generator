@@ -1,4 +1,4 @@
-var BaseValue = {
+var BaseOperand = {
   mapStateToProps : (state, ownProps) => {
     let modelValue = state.getCurrentElement().getPropertyDot(ownProps.propertyName);
     return {
@@ -22,4 +22,4 @@ var BaseValue = {
   }
 };
 
-export default BaseValue;
+export default BaseOperand;

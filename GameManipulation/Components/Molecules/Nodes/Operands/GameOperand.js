@@ -1,18 +1,16 @@
 import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
+import TextInput from "..\\..\\..\\Atoms\\TextInput.js";
 
-
-import TextInput from "..\\..\\Atoms\\TextInput.js";
-
-const EntityPropertyValue = createReactClass({
+const GameOperand = createReactClass({
   render: function() {
     return (
-      <TextInput propertyName={this.props.currentValue.value === undefined ? this.props.propertyName : this.props.propertyName + ".value"}/>
+      <TextInput propertyName={this.props.propertyName + ".attribute"}/>
     );
   },
   defaultValueStructure : function(){
-    return {value: "no value"};
+    return {attribute: "no value"};
   },
 });
 
@@ -40,4 +38,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EntityPropertyValue);
+)(GameOperand);

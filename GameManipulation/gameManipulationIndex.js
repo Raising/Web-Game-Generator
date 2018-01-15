@@ -9,7 +9,7 @@ import StructureEnchancements from ".\\Enchancements\\index.js";
 import gameManipulationReducer from ".\\Reducers\\index.js";
 
 
-import GameManipulationApp from ".\\Views\\GameManipulationApp"
+import GameManipulationApp from ".\\Components\\Templates\\GameManipulationApp"
 
 window.store = createStore(gameManipulationReducer);
 

@@ -4,18 +4,16 @@ import MenuNodeHead from ".\\MenuNodeHead.js";
 import MenuNodeChildren from ".\\MenuNodeChildren.js";
 
 const TreeMenu = function ({basePath = ""}){  
-if (basePath === ""){
+  if (basePath === ""){
     return (
-        <div className="col-xs-2 well no-padding">
-            <MenuNodeChildren basePath = {basePath}/>
-        </div>
+      <MenuNodeChildren basePath = {basePath}/>
     )
-}
+  }
 
-return (
+  return (
     <li>
-        <MenuNodeHead basePath = {basePath}/>
-        <MenuNodeChildren basePath = {basePath}/>
+      <MenuNodeHead basePath = {basePath}/>
+      <MenuNodeChildren basePath = {basePath}/>
     </li>
   );
 };

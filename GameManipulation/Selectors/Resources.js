@@ -8,11 +8,17 @@ const resources ={
     propertyTypes:[
       { name:"raw",     value:"raw"},
       { name:"param",     value:"param"},
-      { name:"entityProperty", value:"entityProperty"},
       { name:"entityByName", value:"entityByName"},
       { name:"list", value:"list"},
       { name:"game", value:"game"},
       { name:"reduce", value:"reduce"},
+    ],
+    comparators:[
+      {name:"==", value:"=="},
+      {name:"<", value:"<"},
+      {name:"<=", value:"<="},
+      {name:">", value:">"},
+      {name:">=", value:">="},
     ],
     inputNames: function(){
       return this.getCurrentElement().inputNames;

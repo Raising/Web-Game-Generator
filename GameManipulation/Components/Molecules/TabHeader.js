@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 
-const TitleHeader = function({title = "Element with no Name"}){
+const TabHeader = function({title = "Element with no Name"}){
     return(
       <div>
         <ul className="nav nav-tabs">
@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(TitleHeader);
+)(TabHeader);

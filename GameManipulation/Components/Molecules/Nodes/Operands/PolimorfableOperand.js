@@ -2,29 +2,27 @@ import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
-import TextInput from "..\\..\\Atoms\\TextInput.js";
-import Select from "..\\..\\Atoms\\Select.js";
+import TextInput from "..\\..\\..\\Atoms\\TextInput.js";
+import Select from "..\\..\\..\\Atoms\\Select.js";
 
 //posible value representations
-import ParamValue from ".\\ParamValue.js";
-import RawValue from ".\\RawValue.js";
-import EntityPropertyValue from ".\\EntityPropertyValue.js";
-import EntityByNameValue from ".\\EntityByNameValue.js";
-import ListValue from ".\\ListValue.js";
-import GameValue from ".\\GameValue.js";
-import ReduceValue from ".\\ReduceValue.js";
+import ParamOperand from ".\\ParamOperand.js";
+import RawOperand from ".\\RawOperand.js";
+import EntityByNameOperand from ".\\EntityByNameOperand.js";
+import ListOperand from ".\\ListOperand.js";
+import GameOperand from ".\\GameOperand.js";
+import ReduceOperand from ".\\ReduceOperand.js";
 
 const valueClass = {
-  param : ParamValue,
-  raw : RawValue,
-  entityProperty : EntityPropertyValue ,
-  entityByName : EntityByNameValue ,
-  list : ListValue ,
-  game : GameValue ,
-  reduce : ReduceValue ,
+  param : ParamOperand,
+  raw : RawOperand,
+  entityByName : EntityByNameOperand ,
+  list : ListOperand ,
+  game : GameOperand ,
+  reduce : ReduceOperand ,
 };
 
-const PolimorfableValue = createReactClass({  
+const PolimorfableOperand = createReactClass({  
     composedValue: function(){
       return (
         <div className="">
@@ -66,4 +64,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(PolimorfableValue);
+)(PolimorfableOperand);

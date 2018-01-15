@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
-import SideParameters from ".\\Molecules\\SideParameters.js";
-import NodeBodyCreate from ".\\NodeBody\\NodeBodyCreate.js";
+import SideParameters from "..\\..\\Molecules\\SideParameters.js";
+import NodeBodyCreate from "..\\..\\Molecules\\Nodes\\NodeBodyCreate.js";
 import createReactClass from "create-react-class";
 
 const NodeRepresentation = createReactClass({

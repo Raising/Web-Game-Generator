@@ -1,13 +1,12 @@
 import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
-import { mapDispatchToProps} from ".\\BaseValue.js";
+import { mapDispatchToProps,mapStateToProps} from ".\\BaseOperand.js";
 
-import TextInput from "..\\..\\Atoms\\TextInput.js";
-import Select from "..\\..\\Atoms\\Select.js";
-import PolimorfableValue from ".\\PolimorfableValue.js";
+import OperandWrapper from ".\\OperandWrapper.js";
+import Select from "..\\..\\..\\Atoms\\Select.js";
 
-const ParamValue = createReactClass({
+const ParamOperand = createReactClass({
 
     render: function() {
         return (
@@ -16,7 +15,7 @@ const ParamValue = createReactClass({
             <div  className="clearfix form-group">
               <label>Attribute:</label>
               <div className="pull-right">
-                <PolimorfableValue  name="Attribute" propertyName={this.props.propertyName + ".attribute"}/>
+                <OperandWrapper  name="Attribute" propertyName={this.props.propertyName + ".attribute"}/>
               </div>
             </div>
           </div>
@@ -27,15 +26,8 @@ const ParamValue = createReactClass({
     },
 });
 
-const mapStateToProps = (state, ownProps) => {
-  let modelValue = state.getCurrentElement().getPropertyDot(ownProps.propertyName);
-  return {
-      currentValue: modelValue !== undefined ? modelValue : "",
-      defaultValue: state.getResource("inputNames")[0],
-  };
-};
   
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ParamValue);
+)(ParamOperand);

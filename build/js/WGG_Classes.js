@@ -6,7 +6,7 @@
  *
  * Copyright 2018, Ignacio Medina Castillo 
  *
- * Released on: January 11, 2018
+ * Released on: January 12, 2018
 */
 import PYC from '..\\..\\module\\PrototypeClass';
 import React, { Component } from "react";
@@ -174,10 +174,6 @@ PYC.Describe("BaseNode",{
 
    
     me.operand = { 
-      entityProperty: async function ({entity = "", attribute = ""}) { 
-        var me = this; 
-        return me.game.getEntityByName(entity)[attribute]; 
-      },
       entityByName: async function ({name = "", attribute = ""}) {
        var me = this; 
        let attributeChain = attribute !== "" ? attribute.split(".") : [];

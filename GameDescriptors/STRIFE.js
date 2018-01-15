@@ -470,8 +470,19 @@ gameDescription.nodes = Object.assign(gameDescription.nodes,
         name:"combatPhase",
         description:"combatPhase",
         nodes:[
-        {nodeType:"Primitive", value: {type:"reduce", group :{type:"game",attribute:"players"}, 
-            comparator:{ operator:"<", operands:[ {type:"param",name:"current",attribute:"battleArea.first.power"}, {type:"param",name:"candidate",attribute:"battleArea.first.power"}]}
+        {nodeType:"Primitive", value: {
+          type:"reduce", 
+          group :{
+            type:"game",
+            attribute:"players"
+          }, 
+          comparator:{ 
+            operator:"<", 
+            operands:[ 
+              {type:"param",
+              name:"current",
+              attribute:"battleArea.first.power"
+            }, {type:"param",name:"candidate",attribute:"battleArea.first.power"}]}
         }, outputNames:[{key:"winnerPlayer",name:"winnerPlayer"}]},
             ///    
             /// How to compare players information?

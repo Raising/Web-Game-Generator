@@ -3,16 +3,25 @@ import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
 
-import TextInput from "..\\..\\Atoms\\TextInput.js";
+import TextInput from "..\\..\\..\\Atoms\\TextInput.js";
+import PolimorfableOperand from ".\\PolimorfableOperand.js";
 
-const ReduceValue = createReactClass({
+const EntityByNameOperand = createReactClass({
   render: function() {
     return (
-      <TextInput propertyName={this.props.currentValue.value === undefined ? this.props.propertyName : this.props.propertyName + ".value"}/>
+      <div>
+        <TextInput propertyName={this.props.propertyName  + ".name"}/>
+        <div  className="clearfix form-group">
+          <label>Attribute:</label>
+          <div className="pull-right">
+            <PolimorfableOperand  name="Attribute" propertyName={this.props.propertyName + ".attribute"}/>
+          </div>
+        </div>
+      </div>
     );
   },
   defaultValueStructure : function(){
-    return {value: "no value"};
+    return {name: "entityName", attribute: ""};
   },
 });
 
@@ -40,4 +49,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ReduceValue);
+)(EntityByNameOperand);

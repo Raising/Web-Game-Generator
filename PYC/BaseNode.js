@@ -162,10 +162,6 @@ PYC.Describe("BaseNode",{
 
    
     me.operand = { 
-      entityProperty: async function ({entity = "", attribute = ""}) { 
-        var me = this; 
-        return me.game.getEntityByName(entity)[attribute]; 
-      },
       entityByName: async function ({name = "", attribute = ""}) {
        var me = this; 
        let attributeChain = attribute !== "" ? attribute.split(".") : [];

@@ -1,18 +1,12 @@
 import React from "react";
 import {connect} from 'react-redux';
+import NodeRepresentation from "..\\Molecules\\Nodes\\NodeRepresentation.js";
 
-import TitleHeader from ".\\TitleHeader.js";
-import ToolBelt from ".\\ToolBelt.js";
-import ManipulationArea from ".\\ManipulationArea.js";
-
-
-const ElementManipulator = function({element = {}}){
-    
+const ManipulationArea = function({element = {}}){
     return(
-      <div className="col-xs-10">
-        <ToolBelt />
-        <TitleHeader  />
-        <ManipulationArea />
+      <div className="tab-content">
+        <NodeRepresentation />
+        <pre >{ element.description ? JSON.stringify(element, null, 2): "ELEMENT PLACEHOLDER"} </pre>
       </div>  
     );
 };
@@ -32,4 +26,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(ElementManipulator);
+)(ManipulationArea);

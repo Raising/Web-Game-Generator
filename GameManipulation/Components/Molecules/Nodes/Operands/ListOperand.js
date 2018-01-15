@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
 
-import TextInput from "..\\..\\Atoms\\TextInput.js";
+import TextInput from "..\\..\\..\\Atoms\\TextInput.js";
 
-const GameValue = createReactClass({
+const ListOperand = createReactClass({
   render: function() {
     return (
       <TextInput propertyName={this.props.currentValue.value === undefined ? this.props.propertyName : this.props.propertyName + ".value"}/>
@@ -40,4 +40,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GameValue);
+)(ListOperand);
