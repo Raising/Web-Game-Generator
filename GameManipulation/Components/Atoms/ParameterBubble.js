@@ -1,14 +1,26 @@
 import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
+import TextInput from ".\\TextInput.js";
 
 const ParameterBubble = createReactClass({
     render: function() {
         return (
-            <div  className="parameter">{this.props.currentValue.name} </div>
+            <div  className="parameter">
+              <TextInput propertyName = {this.props.propertyName + ".name"} />
+            </div>
         );
-    }
+    },
+    defaultValueStructure : function(selectedElementState){
+      return {
+        baseValue:{
+          type:"raw", 
+          value:"set value"
+        }
+      };
+    },
 });
+
 
 const mapStateToProps = (state, ownProps) => {
     return {

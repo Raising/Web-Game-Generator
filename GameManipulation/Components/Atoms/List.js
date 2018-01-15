@@ -3,24 +3,24 @@ import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
 const List = createReactClass({
-    renderListItems: function() {
-        return this.props.elements.map( (element,index) => {
-            return React.createElement(this.props.listElement.type,
-                    {
-                        key:index,
-                        propertyName:this.props.propertyName + "."+ index + (this.props.attributeName !== undefined ?  "." + this.props.attributeName : "")
-                    }
-                )
-        });
-    },
-    render: function() {
-        return (
-            <div>
-              <label>{this.props.name}<a onClick={this.props.addElement}>Add {this.props.listElement.name}</a></label> 
-              {this.renderListItems()} 
-            </div>
-        );
-    }
+  renderListItems: function() {
+    return this.props.elements.map( (element,index) => {
+      return React.createElement(this.props.listElement.type,
+        {
+          key:index,
+          propertyName:this.props.propertyName + "."+ index + (this.props.attributeName !== undefined ?  "." + this.props.attributeName : "")
+        }
+      )
+    });
+  },
+  render: function() {
+    return (
+      <div className = { this.props.className }>
+        <label>{this.props.name}<a onClick={this.props.addElement}>Add {this.props.listElement.name}</a></label> 
+        {this.renderListItems()} 
+      </div>
+    );
+  }
 });
 
 const mapStateToProps = (state, ownProps) => {

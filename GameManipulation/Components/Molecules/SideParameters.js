@@ -1,25 +1,32 @@
 import React from "react";
 import {connect} from 'react-redux';
+import createReactClass from "create-react-class";
 
+import List from "..\\Atoms\\List.js";
 import ParameterBubble from "..\\Atoms\\ParameterBubble.js";
 
-const SideParameters = function({elements = [],propertyName = "", style = "input"}){
-    let parameters = elements.map((parameterName,index) => {
-        return <ParameterBubble key={index} propertyName={propertyName + "." + index}/>;
-    });
-    
-    let styleClasses = "parametersColumn " + style; 
+const SideParameters = createReactClass({
+  render: function() {
+    let styleClasses = "parametersColumn " + this.props.style; 
 
     return (
-        <div className={styleClasses}>
-            {parameters}
-        </div>
+      <List className={styleClasses}
+        propertyName = { this.props.propertyName }
+        listElement = {{
+          name:"Param",
+          type:ParameterBubble,
+          defaultValue:ParameterBubble.WrappedComponent.prototype.defaultValueStructure()
+        }} 
+      />
     );
-};
+  },
+  
+});
+
 
 const mapStateToProps = (state, ownProps) => {
     return {
-       elements: state.getCurrentElement().getPropertyDot(ownProps.propertyName) || []
+       
     };
 }
   
