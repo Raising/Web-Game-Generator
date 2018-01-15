@@ -5,7 +5,7 @@ import createReactClass from "create-react-class";
 const List = createReactClass({
     renderListItems: function() {
         return this.props.elements.map( (element,index) => {
-            return React.createElement(this.props.ListElement.type,
+            return React.createElement(this.props.listElement.type,
                     {
                         key:index,
                         propertyName:this.props.propertyName + "."+ index + (this.props.attributeName !== undefined ?  "." + this.props.attributeName : "")
@@ -15,37 +15,42 @@ const List = createReactClass({
     },
     render: function() {
         return (
-            <div><label>{this.props.name}<a onClick={this.props.addElement}>AddElement</a></label> {this.renderListItems()} </div>
+            <div>
+              <label>{this.props.name}<a onClick={this.props.addElement}>Add {this.props.listElement.name}</a></label> 
+              {this.renderListItems()} 
+            </div>
         );
     }
 });
 
 const mapStateToProps = (state, ownProps) => {
-    let elements = state.getCurrentElement().getProperty(ownProps.propertyName);
+    let elements = state.getCurrentElement().getPropertyDot(ownProps.propertyName);
     if (elements === undefined){
         elements = [];
     } 
     if (ownProps.attributeName !== undefined){
-        elements = elements.map( element => element.getProperty(ownProps.attributeName));
+        elements = elements.map( element => element.getPropertyDot(ownProps.attributeName));
     }
     return {
-      elements : (state.getCurrentElement().getProperty(ownProps.propertyName) || [] )
+      elements : (state.getCurrentElement().getPropertyDot(ownProps.propertyName) || [] )
     };
 }
   
 const mapDispatchToProps = (dispatch,ownProps) => {
-    return {
-        addElement: (e) => {
-            return dispatch({
-                type: "ADD_CHILD_TO_SELECTED_ELEMENT_PROPERTY",
-                payload: {
-                    keyAttribute: "key",
-                    newValue: ownProps.ListElement.defaultValue,
-                    propertyName: ownProps.propertyName
-                }
-            })
+  return {
+    addElement: (e) => {
+      ownProps.onAdd ? ownProps.onAdd(e) : null; 
+
+      return dispatch({
+        type: "ADD_CHILD_TO_SELECTED_ELEMENT_PROPERTY",
+        payload: {
+          keyAttribute: "key",
+          newValue: ownProps.listElement.defaultValue,
+          propertyName: ownProps.propertyName
         }
+      });
     }
+  }
 }
   
 export default connect(

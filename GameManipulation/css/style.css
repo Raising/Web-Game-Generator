@@ -69,10 +69,10 @@ body{
 
 .coreCreate{
     background: #ffeebf;
-    width: 400px;
+    width: 600px;
     position: absolute;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -300px;
     top: 100px;
     border-radius: 10px;
     padding: 10px;
@@ -94,8 +94,9 @@ body{
 
 .valueTypeSelector{
   position: absolute;
-  right: 100%;
-  width: 135px;
+  left: 100%;
+  width: 140px;
+
 }
 
 .mappedGroup{
@@ -104,11 +105,20 @@ body{
   border-radius: 5px;
 }
 
+.operand{
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0px 0 6px 1px grey;
+  padding: 3px;
+  border-radius: 3px;
+  position: relative;
+}
+
 .clearfix>::after {
     display: block;
     content: "";
     clear: both;
 }
+
 
 ul.nav-menu-list-style .nav-header .menu-collapsible-icon{position:absolute; right:3px; top:16px; font-size:9px; }
 

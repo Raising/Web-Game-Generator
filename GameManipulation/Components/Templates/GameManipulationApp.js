@@ -14,5 +14,4 @@ const GameManipulationApp = createReactClass({
   }
 });
 
-
 export default GameManipulationApp;

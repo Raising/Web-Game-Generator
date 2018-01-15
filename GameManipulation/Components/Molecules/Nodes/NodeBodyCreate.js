@@ -14,9 +14,9 @@ const NodeBodyCreate = createReactClass({
         <Select name="Node Type" propertyName="nodeType" resource="nodeTypes"/>
         <TextInput name = "Name" propertyName="name" maxSize="30" />
         <TextInput name = "Description" propertyName="description" maxSize="100" />
-        <List name = "InputNames" propertyName="inputNames" attributeName="name" ListElement =   {{type:TextInput,defaultValue:{name:undefined,key:undefined}}} />
-        <List name = "OutputNames" propertyName="outputNames" attributeName="name" ListElement=   {{type:TextInput,defaultValue:{name:undefined,key:undefined}}} />
-        <MapList name = "Attributes" propertyName="attributes" ListElement = {{type:OperandWrapper}} />
+        <List name = "InputNames" propertyName="inputNames" attributeName="name" listElement =   {{name: "param",type:TextInput,defaultValue:{name:undefined,key:undefined}}} />
+        <List name = "OutputNames" propertyName="outputNames" attributeName="name" listElement=   {{name: "param",type:TextInput,defaultValue:{name:undefined,key:undefined}}} />
+        <MapList name = "Attributes" propertyName="attributes" listElement = {{type:OperandWrapper}} />
       </div> 
     );
   }

@@ -2,9 +2,17 @@ import baseReducer from ".\\BaseReducer.js";
 
 let selectedElementModification = {
 	  CHANGE_SELECTED_ELEMENT_PROPERTY :(state, {newValue ,propertyName = ""}) => {
-        state.setPropertyDot(propertyName, typeof newValue === "function" ? newValue(state) : newValue);
-		return state;
+      state.setPropertyDot(propertyName, typeof newValue === "function" ? newValue(state) : newValue);
+		  return state;
     },
+
+    STRUCTURE_SELECTED_ELEMENT_PROPERTY:(state, {currentValuePath,structure ,propertyName = ""}) => {
+      let currentValue = "";
+
+      structure.setPropertyDot(propertyName,currentValue);
+      state.setPropertyDot(propertyName, structure);
+    },
+
     ADD_CHILD_TO_SELECTED_ELEMENT_PROPERTY: (state,{keyAttribute = "", newValue ,propertyName = ""}) => {
         let list = state.getPropertyDot(propertyName) || [];
 
@@ -14,6 +22,7 @@ let selectedElementModification = {
         ]);
         return state;
     },
+
     ADD_MAPPED_CHILD_TO_SELECTED_ELEMENT_PROPERTY: (state,{elementKeyProperty = "",newValue ,propertyName = ""}) => {
         let map = state.getPropertyDot(propertyName) || {};
         let newKey = map.getPropertyDot(elementKeyProperty);

@@ -4,36 +4,33 @@ import createReactClass from "create-react-class";
 
 import PolimorfableOperand from ".\\PolimorfableOperand.js";
 import List from "..\\..\\..\\Atoms\\List.js";
-import OperationWrapper from "..\\..\\..\\Molecules\\Nodes\\Operations\\OperationWrapper.js";
+import Operation from "..\\..\\..\\Molecules\\Nodes\\Operations\\Operation.js";
 
 const OperandWrapper = createReactClass({
-    hasOperations: function(){
-        return this.props.currentValue.baseValue !== undefined;
-    },
+  isStructured: function(){
+    return this.props.currentValue.baseValue !== undefined;
+  },
 
-    valueWithOperations: function(){
-        return (
-            <div className="" >
-                <PolimorfableOperand propertyName={this.props.propertyName + ".baseValue"}/>
-                <List propertyName={this.props.operations + ".operations"} ListElement = {{type:OperationWrapper}} />
-            </div>
-        );
-    },
+  valueWithOperations: function(){
+    return (
+      <div className="operand" >
+        <PolimorfableOperand propertyName = { this.isStructured() ? this.props.propertyName + ".baseValue" : this.props.propertyName } />
+        <List 
+          propertyName = { this.props.propertyName + ".operations" }
+          onAdd = {!this.isStructured() ? this.props.onAddOperation : undefined } 
+          listElement = {{
+            name:"Operation",
+            type:Operation,
+            defaultValue:Operation.WrappedComponent.prototype.defaultValueStructure()
+          }} 
+        />
+      </div>
+    );
+  },
 
-    /// This case is to support handMade json that place a value without the baseValue wrapper  
-    valueAlone: function(){
-        return (
-            <PolimorfableOperand propertyName={this.props.propertyName}/>
-        );
-    },
-    
-    render: function() {
-        if (this.hasOperations()){
-           return this.valueWithOperations();
-        }else{
-           return this.valueAlone();
-        }
-    }
+  render: function() {
+    return this.valueWithOperations();
+  }
 });
 
 const mapStateToProps = (state, ownProps) => {
@@ -44,17 +41,21 @@ const mapStateToProps = (state, ownProps) => {
 }
   
 const mapDispatchToProps = (dispatch,ownProps) => {
-    return {
-        onChange: (e) => {
-            return dispatch({
-                type: "CHANGE_SELECTED_ELEMENT_PROPERTY",
-                payload: {
-                    newValue: e.currentTarget.value,
-                    propertyName: ownProps.propertyName
-                }
-            })
+  return {
+    onAddOperation: (e) => {
+      return dispatch({
+        type: "CHANGE_SELECTED_ELEMENT_PROPERTY",
+        payload: {
+          newValue: (state) => { 
+            return {baseValue : state.getPropertyDot(ownProps.propertyName), 
+                    operations : []
+                  }
+              },
+          propertyName: ownProps.propertyName
         }
+      })
     }
+  }
 }
   
 export default connect(

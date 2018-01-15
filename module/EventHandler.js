@@ -60,8 +60,8 @@ Object.defineProperty(Object.prototype, '$unListenEvent',{
     listenerSpot = listenedObject.$readyEventHandler(eventName,functionName)[eventName][functionName];
     if (listenerSpot[scope.$Id()] === undefined){
        console.warn('the trigger in the object "'+ listenedObject.$Id() +
-       '" for the event "'+eventName+
-       '" to trigger the function "'+ functionName+
+       '" for the event "'+ eventName +
+       '" to trigger the function "'+ functionName +
        '" of the object "'+ scope.$Id() +
        '" wasen`t setted you may be missing something');
     }

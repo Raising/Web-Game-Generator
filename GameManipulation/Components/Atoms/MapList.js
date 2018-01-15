@@ -13,9 +13,9 @@ const MapList = createReactClass({
         <div  key={elementKey} className="clearfix form-group">
           <label>{elementKey}:</label>
           <div className="pull-right">
-          {React.createElement(this.props.ListElement.type,
+          {React.createElement(this.props.listElement.type,
             {   
-              propertyName:this.props.propertyName + "."+ elementKey
+              propertyName:this.props.propertyName + "." + elementKey
             }
           )}
           </div>

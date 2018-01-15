@@ -20,6 +20,15 @@ const resources ={
       {name:">", value:">"},
       {name:">=", value:">="},
     ],
+
+    operators:[
+      {name:"+", value: "+"},
+      {name:"-", value: "-"},
+      {name:"/", value: "/"},
+      {name:"*", value: "*"},
+      {name:"^", value: "pow"},
+    ],
+
     inputNames: function(){
       return this.getCurrentElement().inputNames;
     }
