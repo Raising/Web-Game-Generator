@@ -8,7 +8,6 @@ import STRIFE from "..\\GameDescriptors\\STRIFE.js";
 import StructureEnchancements from ".\\Enchancements\\index.js";
 import gameManipulationReducer from ".\\Reducers\\index.js";
 
-
 import GameManipulationApp from ".\\Components\\Templates\\GameManipulationApp"
 
 window.store = createStore(gameManipulationReducer);
@@ -36,7 +35,7 @@ store.dispatch({
 store.dispatch({
   type: "SELECT_MENU_ELEMENT",
   payload: {
-    "elementId": "nodes.champion3"
+    "elementId": "nodes.initGame"
   }
 });
 // store.dispatch({

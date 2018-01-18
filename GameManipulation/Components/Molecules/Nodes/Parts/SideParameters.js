@@ -2,8 +2,8 @@ import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
-import List from "..\\Atoms\\List.js";
-import ParameterBubble from "..\\Atoms\\ParameterBubble.js";
+import List from "..\\..\\..\\Atoms\\List.js";
+import ParameterBubble from "..\\..\\..\\Atoms\\ParameterBubble.js";
 
 const SideParameters = createReactClass({
   render: function() {

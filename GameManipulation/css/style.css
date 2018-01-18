@@ -34,7 +34,7 @@ body{
 
     position: relative;
     max-width: 50px;
-    height: 30px;
+    padding: 2px;
     background: #f3edae;
 
     margin-top: 50px;
@@ -97,6 +97,32 @@ body{
   left: 100%;
   width: 140px;
 
+}
+
+.baseInfo{
+  background:rgba(200,200,200,0.6);
+  padding: 10px;
+  border-bottom: 2px solid grey;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.simplifiedNode{
+  background-color: rgba(207, 97, 158, 0.616);
+  margin: 20px auto;
+  width: 180px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.simplifiedNode >*{
+  border-radius: 5px;
+ padding: 3px;
+ margin: 5px;
+}
+.simplifiedNode .nodeType{
+  background-color: rgba(129, 197, 97, 0.616);
+}
+.simplifiedNode .nodeName{
+  background-color: rgba(207, 181, 97, 0.616);
 }
 
 .mappedGroup{
