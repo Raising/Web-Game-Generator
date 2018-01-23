@@ -1,13 +1,15 @@
 import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
+import styled from "styled-components";
 
 const TextInput = createReactClass({
     render: function() {
+      
         return (
-            <div className={this.props.className}>
+            <div >
                 {this.props.name !== undefined ? (<label>{this.props.name} </label>) : ""}
-                <input onChange={this.props.onChange} value={this.props.currentValue} placeholder="InsertText"/> 
+                <StyledInput onChange={this.props.onChange} value={this.props.currentValue} placeholder="InsertText"/> 
             </div>
         );
     }
@@ -38,3 +40,13 @@ export default connect(
    mapStateToProps,
    mapDispatchToProps
 )(TextInput);
+
+
+const StyledInput = styled.input`
+  width: 140px;
+  border: 2px solid green;
+  border-radius: 4px;
+  &:focus {
+    border-color: purple;
+  }
+`;

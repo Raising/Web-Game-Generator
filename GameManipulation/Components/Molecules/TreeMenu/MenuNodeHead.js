@@ -1,10 +1,11 @@
 import React from "react";
 import {connect} from 'react-redux';
+import styled from "styled-components";
 
 const MenuNodeHead = function({basePath = "",onClick}){
     let name = basePath.split(".").pop(); 
     return(
-      <a onClick={onClick} >{name}</a>
+      <StyledMenuText onClick={onClick}> {name} </StyledMenuText>
     );
 };
 
@@ -29,3 +30,12 @@ export default connect(
    mapStateToProps,
    mapDispatchToProps
 )(MenuNodeHead);
+
+const StyledMenuText = styled.a`
+  position: relative;
+  display: block;
+  overflow: hidden; 
+  border: 0px ; 
+  cursor: pointer;
+  transition: 0.5s;
+`;

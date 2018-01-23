@@ -96,7 +96,6 @@ body{
   position: absolute;
   left: 100%;
   width: 140px;
-
 }
 
 .baseInfo{
@@ -113,11 +112,16 @@ body{
   padding: 10px;
   border-radius: 10px;
 }
+
+.simplifiedNode.primitive{
+  margin-left: 0px; 
+}
 .simplifiedNode >*{
   border-radius: 5px;
  padding: 3px;
  margin: 5px;
 }
+
 .simplifiedNode .nodeType{
   background-color: rgba(129, 197, 97, 0.616);
 }

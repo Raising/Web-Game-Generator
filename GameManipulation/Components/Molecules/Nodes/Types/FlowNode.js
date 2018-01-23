@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
 import BaseInfo from "..\\..\\..\\Molecules\\Nodes\\Parts\\BaseInfo.js";
-import SimplifiedNode from "..\\..\\..\\Molecules\\Nodes\\Parts\\SimplifiedNode.js";
+import SimplifiedNode from "..\\..\\..\\Molecules\\Nodes\\SimplifiedNodes\\SimplifiedNode.js";
 
 const FlowNode = createReactClass({
   renderFlow: function(){

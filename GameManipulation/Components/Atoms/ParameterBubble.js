@@ -6,11 +6,12 @@ import TextInput from ".\\TextInput.js";
 const ParameterBubble = createReactClass({
     render: function() {
         return (
-            <div  className="parameter">
+            <div  className={this.props.className +" parameter " + "Anchor_" + this.props.currentValue.key }>
               <TextInput propertyName = {this.props.propertyName + ".name"} />
             </div>
         );
     },
+
     defaultValueStructure : function(selectedElementState){
       return {
         baseValue:{

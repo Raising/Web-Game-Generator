@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
 
-import TextInput from "..\\..\\..\\Atoms\\TextInput.js";
+import TextInput from "..\\..\\..\\Atoms\\Clusters\\LabelTextInput.js";
 
 const ListOperand = createReactClass({
   render: function() {

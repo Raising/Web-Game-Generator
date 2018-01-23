@@ -1,18 +1,17 @@
 import React from "react";
 import {connect} from 'react-redux';
+import createReactClass from "create-react-class";
+import styled from "styled-components";
 import TreeMenu from ".\\TreeMenu.js";
 
-const MenuNodeChildren = function({isSelected = false,basePath = "",children}){
-    let className = "nav nav-list nav-menu-list-style ";
-    if (isSelected){
-        className += " selected"; 
-    }
-
+const MenuNodeChildren = createReactClass({
+  render: function(){
     return (
-    <ul className={className}>
-        {children}
-    </ul>);
-};
+      <StyledChildrenContainer selected={this.props.isSelected} >
+          {this.props.children}
+      </StyledChildrenContainer>);
+  },
+})
 
 const getTreeElementFromPath = (tree,path) => {
     let result = tree;
@@ -36,9 +35,10 @@ const mapStateToProps = (state, ownProps) => {
             );
         });
     }
+    
     let splitedPath = state.selectedElement.path.split(".");
     let splitedPathIndex = ownProps.basePath.split(".").length -1;
-
+   
     return {
       children : childrenElements,
       isSelected : (ownProps.basePath === "" || splitedPath.indexOf(ownProps.basePath.split(".").pop()) === splitedPathIndex)
@@ -53,3 +53,16 @@ export default connect(
    mapStateToProps,
    mapDispatchToProps
 )(MenuNodeChildren);
+
+
+const StyledChildrenContainer = styled.ul`
+  list-style:none; 
+  padding: 0px; 
+  padding-left: 5px; 
+  margin:0px;
+  
+  &>li>a{
+    max-height: ${props => {return props.selected ? '50px' : '0px'}};
+    
+  }
+`;

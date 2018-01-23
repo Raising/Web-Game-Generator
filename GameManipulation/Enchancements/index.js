@@ -1,3 +1,19 @@
+Object.$ID_COUNTER = 0;
+Object.defineProperty(Object.prototype, '$Id',{
+  value :function(){
+    if (this['[[ID]]'] === undefined){
+      Object.$ID_COUNTER ++;
+      var str = "" + Object.$ID_COUNTER;
+      var pad = "0000000000";
+   
+      Object.defineProperty(this, '[[ID]]',{
+      value : pad.substring(0, pad.length - str.length) + str
+      });
+    }
+    return this['[[ID]]'];
+  }
+});
+
 Object.defineProperty(Object.prototype, 'getProperty',{
     value :function(propertyName,separator){
         if (separator === undefined){

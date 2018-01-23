@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
+import styled from "styled-components";
 
 const ErrorMessage = createReactClass({
     render: function() {
@@ -8,9 +9,9 @@ const ErrorMessage = createReactClass({
             return null;
         }else{
             return (
-                <div className="alert alert-danger">
-                    <strong>Error: </strong>{this.props.currentValue}
-                </div>
+                <DangerAlert >
+                  <strong>Error: </strong>{this.props.currentValue}
+                </DangerAlert>
             );
         }
     }
@@ -32,3 +33,18 @@ export default connect(
    mapStateToProps,
    mapDispatchToProps
 )(ErrorMessage);
+
+
+const AlertStyle = styled.div`
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+`;
+
+const DangerAlert = styled(AlertStyle)`
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+`;
+

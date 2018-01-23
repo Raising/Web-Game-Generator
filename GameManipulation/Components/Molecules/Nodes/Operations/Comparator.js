@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
-import TextInput from "..\\..\\..\\Atoms\\TextInput.js";
+import TextInput from "..\\..\\..\\Atoms\\Clusters\\LabelTextInput.js";
 import OperandWrapper from "..\\..\\..\\Molecules\\Nodes\\Operands\\OperandWrapper.js";
 import Select from "..\\..\\..\\Atoms\\Select.js";
 
