@@ -4,17 +4,17 @@ import createReactClass from "create-react-class";
 import styled from "styled-components";
 
 const ErrorMessage = createReactClass({
-    render: function() {
-        if (this.props.currentValue === ""){
-            return null;
-        }else{
-            return (
-                <DangerAlert >
-                  <strong>Error: </strong>{this.props.currentValue}
-                </DangerAlert>
-            );
-        }
+  render: function() {
+    if (this.props.currentValue === ""){
+      return null;
+    }else{
+      return (
+        <DangerAlert >
+          <strong>Error: </strong>{this.props.currentValue}
+        </DangerAlert>
+      );
     }
+  }
 });
 
 const mapStateToProps = (state, ownProps) => {
@@ -33,7 +33,6 @@ export default connect(
    mapStateToProps,
    mapDispatchToProps
 )(ErrorMessage);
-
 
 const AlertStyle = styled.div`
   padding: 15px;

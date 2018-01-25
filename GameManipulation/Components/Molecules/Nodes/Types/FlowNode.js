@@ -2,7 +2,6 @@ import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
 
-import BaseInfo from "..\\..\\..\\Molecules\\Nodes\\Parts\\BaseInfo.js";
 import SimplifiedNode from "..\\..\\..\\Molecules\\Nodes\\SimplifiedNodes\\SimplifiedNode.js";
 
 const FlowNode = createReactClass({
@@ -18,10 +17,9 @@ const FlowNode = createReactClass({
   },
   render: function() { 
     return (
-      <div className="clearfix coreCreate">
-        <BaseInfo />
+      <div>
         {this.renderFlow()}
-      </div> 
+      </div>
     );
   }
 });
@@ -40,3 +38,4 @@ export default connect(
    mapStateToProps,
    mapDispatchToProps
 )(FlowNode);
+

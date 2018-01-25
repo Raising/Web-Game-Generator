@@ -6,10 +6,11 @@ const List = createReactClass({
   renderListItems: function() {
     return this.props.elements.map( (element,index) => {
       return React.createElement(this.props.listElement.type,
+        Object.assign(this.props.listElement,
         {
           key:index,
           propertyName:this.props.propertyName + "."+ index + (this.props.attributeName !== undefined ?  "." + this.props.attributeName : ""),
-        }
+        })
       )
     });
   },
@@ -18,7 +19,6 @@ const List = createReactClass({
       <div className = { this.props.className }>
         <label>{this.props.name}<a onClick={this.props.addElement}>Add {this.props.listElement.name}</a></label> 
         {this.renderListItems()} 
-       
       </div>
     );
   }

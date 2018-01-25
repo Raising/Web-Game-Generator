@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import createReactClass from "create-react-class";
+import styled from "styled-components";
 
 import OptionalLabel from "..\\..\\..\\Atoms\\OptionalLabel.js";
 import OperandWrapper from "..\\..\\..\\Molecules\\Nodes\\Operands\\OperandWrapper.js";
@@ -9,9 +10,9 @@ const PrimitiveSimplifiedNode = createReactClass({
 
   render: function() {
     return (
-      <div className="simplifiedNode primitive">
+      <StyledSimplifiedPrimitive className={this.props.className}>
         <OperandWrapper propertyName ={this.props.propertyName + ".value"} />
-      </div>
+      </StyledSimplifiedPrimitive>
     );
   },
 });
@@ -25,8 +26,12 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch,ownProps) => {
   return {};
 };
-  
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PrimitiveSimplifiedNode);
+
+const StyledSimplifiedPrimitive = styled.div`
+  margin-left: 0px !important; 
+`;

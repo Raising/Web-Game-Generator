@@ -2,83 +2,6 @@ body{
     padding-top: 10px;
 }
 
-.nodeSurface{
-    position: relative;
-    height: 800px;
-    width : 100%;
-    background-color: rgb(242, 254, 241);
-    border: 1px solid #3bb61c;
-    border-radius: 10px;
-}
-
-.parametersColumn{
-    height: 99%;
-    width: 10px;
-    background-color: rgb(245, 245, 245);
-    position: absolute;
-    border-radius: 5px;
-    top: 0.5%;
-}
-
-.parametersColumn.input{
-    box-shadow: inset 1px 1px 1px 1px #AAA;
-    left:3px;
-}
-
-.parametersColumn.output{
-    box-shadow: inset -1px 1px 1px 1px #AAA;
-    right: 3px;
-}
-
-.parametersColumn .parameter{
-
-    position: relative;
-    max-width: 50px;
-    padding: 2px;
-    background: #f3edae;
-
-    margin-top: 50px;
-    border: 1px #857c12 solid;
-    
-    overflow: hidden;
-    transition: 0.7s cubic-bezier(0.58, 0.21, 0.29, 0.94);
-    padding:2px 8px;
-}
-
-.parametersColumn .parameter:hover{
-    max-width: 120px;
-}
-
-.parametersColumn.input .parameter{
-    border-radius: 0px 15px 15px 0px;
-    float:left;
-    left: 2px;
-    border-left: 0px;
-    text-align: right;
-}
-.parametersColumn.input .parameter>span{
-    float: right;
-}
-
-.parametersColumn.output .parameter{
-    border-radius: 15px 0 0 15px;
-    float: right;
-    right: 2px;
-    border-right: 0px;
-}
-
-.coreCreate{
-    background: #ffeebf;
-    width: 600px;
-    position: absolute;
-    left: 50%;
-    margin-left: -300px;
-    top: 100px;
-    border-radius: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
 .tab-content{
     border: 1px solid #ddd;
     border-top:0px;
@@ -96,37 +19,6 @@ body{
   position: absolute;
   left: 100%;
   width: 140px;
-}
-
-.baseInfo{
-  background:rgba(200,200,200,0.6);
-  padding: 10px;
-  border-bottom: 2px solid grey;
-  border-radius: 5px 5px 0px 0px;
-}
-
-.simplifiedNode{
-  background-color: rgba(207, 97, 158, 0.616);
-  margin: 20px auto;
-  width: 180px;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.simplifiedNode.primitive{
-  margin-left: 0px; 
-}
-.simplifiedNode >*{
-  border-radius: 5px;
- padding: 3px;
- margin: 5px;
-}
-
-.simplifiedNode .nodeType{
-  background-color: rgba(129, 197, 97, 0.616);
-}
-.simplifiedNode .nodeName{
-  background-color: rgba(207, 181, 97, 0.616);
 }
 
 .mappedGroup{
@@ -148,40 +40,3 @@ body{
     content: "";
     clear: both;
 }
-
-
-ul.nav-menu-list-style .nav-header .menu-collapsible-icon{position:absolute; right:3px; top:16px; font-size:9px; }
-
-ul.nav-menu-list-style{
-  margin:0;
-}
-ul.nav-menu-list-style .nav-header{
-  border-top:1px solid #FFFFFF;
-  border-bottom:1px solid #e8e8e8;
-  display:block;
-  margin:0;
-  line-height:42px;
-  padding:0 8px;
-  font-weight:600;
-}
-ul.nav-menu-list-style> li{
-  position:relative; }
-ul.nav-menu-list-style> li a{
-  border-top:1px solid #FFFFFF;
-  border-bottom:1px solid #e8e8e8;
-  padding:0 10px;
-  line-height:32px;
-}
-
-
-ul.nav-menu-list-style{list-style:none; padding: 0px; padding-left: 5px; margin:0px; }
-ul.nav-menu-list-style > li > a {max-height: 0px;overflow:hidden; border: 0px ; cursor: pointer}
-ul.nav-menu-list-style.selected > li > a {max-height: 50px; transition: 0.5s}
-
-
-ul.nav-menu-list-style li .badge,ul.nav-menu-list-style li .pull-right,ul.nav-menu-list-style li span.badge,ul.nav-menu-list-style li label.badge{float:right; margin-top:7px;}
-ul.bullets{list-style:inside disc}
-ul.numerics{list-style:inside decimal}
-
-ul.kas-icon-aero li a:before{font-family: 'Glyphicons Halflings'; font-size:9px; content: "\e258"; padding-right:8px; }
-
