@@ -13,36 +13,21 @@ import GameManipulationApp from ".\\Components\\Templates\\GameManipulationApp"
 window.store = createStore(gameManipulationReducer);
 
 ReactDOM.render(
-    <Provider store= {store}>
-        <GameManipulationApp state={store.getState()} />
-    </Provider>
+  <Provider store= {store}>
+    <GameManipulationApp state={store.getState()} />
+  </Provider>
 , document.querySelector(".container"));
 
 store.dispatch({
-    type: "LOAD_CURRENT_GAME",
-    payload: {
-        gameConfig: STRIFE
-    }
-});
-
-store.dispatch({
-    type: "SELECT_MENU_ELEMENT",
-    payload: {
-      "elementId": "nodes"
-    }
-  });
-
-store.dispatch({
-  type: "SELECT_MENU_ELEMENT",
+  type: "GAME:LOAD",
   payload: {
-    "elementId": "nodes.initGame"
+    gameConfig: STRIFE
   }
 });
-// store.dispatch({
-//   type: "CHANGE_SELECTED_ELEMENT_PROPERTY",
-//   payload: {
-//     newValue: "Flow",
-//     propertyName: "nodeType",
-//     elementId: "gameModel.nodes.champion3"
-//   }
-// });
+
+store.dispatch({
+  type: "MENU:SELECT_MENU_ELEMENT",
+  payload: {
+    "elementId": "nodes.champion3"
+  }
+});

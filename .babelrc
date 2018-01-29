@@ -1,4 +1,4 @@
 {
   // aniadir "stage-0" para compilar async a generadores
-  "presets": ["react"],
+  "presets": ["react"]
 }

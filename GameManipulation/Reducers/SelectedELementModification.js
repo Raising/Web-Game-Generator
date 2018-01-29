@@ -1,22 +1,22 @@
 import baseReducer from ".\\BaseReducer.js";
 
 let selectedElementModification = {
-	  CHANGE_SELECTED_ELEMENT_PROPERTY :(state, {newValue ,propertyName = ""}) => {
-      state.setPropertyDot(propertyName, typeof newValue === "function" ? newValue(state) : newValue);
-		  return state;
+    CHANGE_SELECTED_ELEMENT_PROPERTY :(state, {newValue ,propertyName = ""}) => {
+      state = state.setPropertyDot(propertyName, newValue);
+      return state;
     },
 
     STRUCTURE_SELECTED_ELEMENT_PROPERTY:(state, {currentValuePath,structure ,propertyName = ""}) => {
       let currentValue = "";
 
-      structure.setPropertyDot(propertyName,currentValue);
-      state.setPropertyDot(propertyName, structure);
+      structure = structure.setPropertyDot(currentValuePath,currentValue);
+      state = state.setPropertyDot(propertyName, structure);
     },
 
     ADD_CHILD_TO_SELECTED_ELEMENT_PROPERTY: (state,{keyAttribute = "", newValue ,propertyName = ""}) => {
         let list = state.getPropertyDot(propertyName) || [];
 
-        state.setPropertyDot(propertyName,[
+        state = state.setPropertyDot(propertyName,[
           ...list,
           initializeNewValue({keyAttribute ,newValue,list})
         ]);
@@ -36,7 +36,7 @@ let selectedElementModification = {
             modifiedElements[elementKeyProperty] = "";
         }
         console.log(modifiedElements);
-        state.setPropertyDot(propertyName,Object.assign({},map,modifiedElements));
+        state = state.setPropertyDot(propertyName,Object.assign({},map,modifiedElements));
         return state;
     },
 };
@@ -59,7 +59,7 @@ function initializeNewValue({keyAttribute = "", newValue = {}, list = [] } ){
       currentIndex++;
       newKey = baseKey + currentIndex;
     }
-    initValue.setPropertyDot(keyAttribute,newKey);
+    initValue = initValue.setPropertyDot(keyAttribute,newKey);
   }
   return initValue;
 }

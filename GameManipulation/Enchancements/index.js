@@ -16,13 +16,14 @@ Object.defineProperty(Object.prototype, '$Id',{
 
 Object.defineProperty(Object.prototype, 'getProperty',{
     value :function(propertyName,separator){
+      let inmutableProperty;
         if (separator === undefined){
-            return this[propertyName];
+            return inmutableProperty = this[propertyName];
         }
         else {
             let splitedProperty = propertyName.split(separator); 
             if (splitedProperty.length === 1){
-                return this[propertyName];
+                return inmutableProperty = this[propertyName];
             }
             let property = this;
             for (let subName of splitedProperty){
@@ -30,8 +31,16 @@ Object.defineProperty(Object.prototype, 'getProperty',{
                     property = property[subName];
                 }
             }
-            return property;
+            return inmutableProperty = property;
         }
+      if (typeof inmutableProperty === "object"){
+        if (inmutableProperty.hasOwnProperty("length")){
+          inmutableProperty = [...inmutableProperty];
+        }else{
+          inmutableProperty = Object.assign({},inmutableProperty);
+        }
+      }
+      return inmutableProperty;
     }
 });
 
@@ -42,38 +51,47 @@ Object.defineProperty(Object.prototype, 'getPropertyDot',{
 });
 
 Object.defineProperty(Object.prototype, 'setProperty',{
-    value :function(propertyName,value,separator){
-        if (separator === undefined){
-            this[propertyName] = value;
+    value : function(propertyName,value,separator){
+      let newThis =  Object.assign(Object.create(this.__proto__),this);
+      if (typeof value === "object"){
+        if (value.hasOwnProperty("length")){
+          value = [...value];
+        }else{
+          value = Object.assign({},value);
         }
-        else {
-            let splitedProperty = propertyName.split(separator); 
-            if (splitedProperty.length === 1){
-                this[propertyName] = value;
+      }
+      if (separator === undefined){
+          newThis[propertyName] = value;
+      }
+      else {
+        let splitedProperty = propertyName.split(separator); 
+        
+        if (splitedProperty.length === 1){
+          newThis[propertyName] = value;
+        }else{
+          let property = newThis;
+          let tailPropertyValue = splitedProperty.pop();
+          for (let subName of splitedProperty){
+            if (typeof property[subName] === "object"){
+              if (property[subName] !== undefined &&  property[subName].hasOwnProperty("length")){
+                property[subName] = [...property[subName]];
+              }else{
+                property[subName] = Object.assign({},property[subName]);
+              }
             }else{
-                let property = this;
-                let tailPropertyValue = splitedProperty.pop();
-                for (let subName of splitedProperty){
-                  if (typeof property[subName] === "object"){
-                    if (property[subName] !== undefined &&  property[subName].hasOwnProperty("length")){
-                      property[subName] = [...property[subName]];
-                    }else{
-                      property[subName] = Object.assign({},property[subName]);
-                    }
-                  }else{
-                    property[subName] = {};
-                  }
-                  property = property[subName];
-                }
-                property[tailPropertyValue] = value;
+              property[subName] = {};
             }
-            
+            property = property[subName];
+          }
+          property[tailPropertyValue] = value;
         }
+      }
+      return newThis;
     }
 });
 
 Object.defineProperty(Object.prototype, 'setPropertyDot',{
     value : function(propertyName,value){
-        this.setProperty(propertyName,value,".");
+      return  this.setProperty(propertyName,value,".");
     }
 });

@@ -13,18 +13,18 @@ const mapStateToProps = (state, ownProps) => {
     return {
        
     };
-}
+};
   
 const mapDispatchToProps = (dispatch,ownProps) => {
-    return {
-        onClick : () => dispatch({
-            type: "SELECT_MENU_ELEMENT",
-            payload: {
-                elementId: ownProps.basePath
-            }
-        })
-    }
-}
+  return {
+    onClick : () => dispatch({
+      type: "MENU:SELECT_MENU_ELEMENT",
+      payload: {
+        elementId: ownProps.basePath
+      }
+    })
+  }
+};
   
 export default connect(
    mapStateToProps,

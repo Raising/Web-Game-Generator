@@ -15,16 +15,11 @@ module.exports = {
       publicPath: "/",
       filename: '[name].js'
   },
-
+ 
+  
   module: {
     loaders: [
-      {
-        exclude: /node_modules/,  
-        loader: "babel-loader",
-        query: {
-          plugins: ["transform-es2015-modules-commonjs"]
-        }
-      }
+      {  exclude: /node_modules/, loader: "babel-loader", query: { plugins: ["transform-es2015-modules-commonjs"]  } }
     ]
   },
   resolve: {
