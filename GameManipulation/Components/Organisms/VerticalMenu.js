@@ -7,7 +7,9 @@ const VerticalMenu = createReactClass({
   render: function() {
     return (
       <div className={this.props.className + " well no-padding"}>
-        <label onClick = {this.props.onClick}> DESHACER </label>
+        <label onClick = {this.props.undo}> UNDO </label>
+        <label > _ </label>
+        <label onClick = {this.props.redo}> REDO </label>
         <TreeMenu />
       </div>
     );
@@ -22,8 +24,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch,ownProps) => {
     return {
-      onClick : () => dispatch({
+      undo : () => dispatch({
         type: "USER_INTERACTION:UNDO",
+        payload: {}
+      }),
+      redo : () => dispatch({
+        type: "USER_INTERACTION:REDO",
         payload: {}
       })
     };

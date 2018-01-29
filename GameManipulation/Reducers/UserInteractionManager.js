@@ -19,11 +19,21 @@ export const manager = {
 
     return this.actionHistory[this.currentAction].state;
   },
+  redo : function (){
+    if (this.currentAction < this.actionHistory.length - 1) {
+      this.currentAction++ ;
+    };
+
+    return this.actionHistory[this.currentAction].state;
+  },
 };
 
 const userInteractionActions = {
 	"USER_INTERACTION:UNDO" : (state, {}) =>{
 		return manager.undo();
+  },
+  "USER_INTERACTION:REDO" : (state, {}) =>{
+		return manager.redo();
   }
 };
 
