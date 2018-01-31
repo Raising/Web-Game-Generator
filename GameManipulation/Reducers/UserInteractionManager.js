@@ -1,5 +1,4 @@
 import baseReducer from ".\\BaseReducer.js";
-import selectors from "..\\Selectors\\Index.js";
 
 export const manager = {
   actionHistory:[],
@@ -7,9 +6,10 @@ export const manager = {
   saveAction : function (action, state) {
     console.log(action);
     if (action.type.startsWith("USER_INTERACTION")) return;
-    action.state = Object.assign(Object.create(selectors),state);
+    action.state = state;
     this.currentAction++;
     this.actionHistory[this.currentAction] = action;
+    this.actionHistory.length = this.currentAction + 1;
   },
 
   undo : function (){
